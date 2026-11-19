@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>九哥話室｜用工程師的邏輯解碼古文明</title>
+<meta name="description" content="九哥話室：用工程師的底層邏輯解碼三星堆、秦始皇陵、山海經、金字塔與外星文明之謎。__TOTAL__ 支影片，一鏡看完。">
+<meta name="theme-color" content="#06232A">
+<link rel="icon" href="__LOGO__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<style>
+:root{
+  --cobalt:#0F4A4F; --navy:#06232A; --yellow:#D9AE52; --yolk:#B9862F; --paper:#EFE6D0; --sky:#8CC9B8;
+  --display:'Cinzel','LXGW WenKai TC',serif; --serif:'LXGW WenKai TC','Noto Serif TC',serif; --sans:'Noto Sans TC',system-ui,sans-serif;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{background:var(--navy);color:var(--paper);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:12px;top:-60px;z-index:99;background:var(--yellow);color:var(--navy);padding:8px 14px;border-radius:999px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto 0;z-index:38;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);pointer-events:none}
+.bar>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:42px;height:42px;border-radius:50%;display:block;box-shadow:0 0 0 2px var(--yellow)}
+.brand span{font-family:var(--display);font-weight:900;font-variation-settings:'SOFT' 100,'opsz' 72;font-size:1.25rem;letter-spacing:.01em}
+.bar nav{display:flex;gap:10px}
+.btn{font:500 .95rem/1 var(--sans);display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;border:2px solid var(--yellow);background:transparent;color:var(--yellow);cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:rgba(217,174,82,.12)}
+.btn.solid{background:var(--yellow);color:var(--navy);font-weight:700}
+.btn.solid:hover{background:#E6C171}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:var(--cobalt);touch-action:pan-y}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+.hero-copy{position:absolute;left:var(--pad);bottom:clamp(36px,9vh,110px);max-width:33rem;pointer-events:none}
+.hero-copy>*{pointer-events:auto}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.7rem,6vw,5.4rem);line-height:1.08;margin:0 0 .35em;color:var(--yellow);letter-spacing:.02em;text-shadow:0 2px 0 rgba(6,35,42,.35)}
+.hero p{margin:0 0 1.6em;font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.85;max-width:29em;color:var(--paper)}
+.hero .acts{display:flex;flex-wrap:wrap;gap:12px}
+.hint{position:absolute;right:var(--pad);bottom:calc(clamp(22px,4vh,40px) + 116px);font-size:.85rem;color:var(--sky);display:flex;align-items:center;gap:10px;pointer-events:none}
+.hint i{display:block;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--sky);position:relative}
+.hint i::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--sky)}
+
+/* journey */
+.journey{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,rgba(6,35,42,.94) 10%,rgba(6,35,42,0));pointer-events:none}
+.label{position:absolute;left:var(--pad);bottom:clamp(40px,10vh,120px);z-index:2;max-width:31rem;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .35s,transform .45s,visibility .35s;pointer-events:none}
+.label.on{opacity:1;visibility:visible;transform:none}
+.label h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,6.4vw,6rem);line-height:1.04;margin:0 0 .3em;color:var(--yellow);letter-spacing:.03em}
+.label h2 small{display:block;font-family:var(--display);font-variation-settings:'SOFT' 100;font-weight:800;font-size:.3em;letter-spacing:.02em;color:var(--sky);margin-top:.35em}
+.label p{margin:0 0 .6em;font-size:1.05rem;line-height:1.8}
+.label .count{font-size:.9rem;color:var(--sky)}
+.label.long h2{font-size:clamp(2.2rem,4.6vw,4.4rem)}
+.label.vertical h2{writing-mode:vertical-rl;font-size:clamp(2.4rem,5.6vw,5rem);margin:0 0 .4em;line-height:1.15}
+.label.vertical h2 small{display:none}
+.label.vertical{display:flex;gap:28px;align-items:flex-end;max-width:36rem}
+.label.outro{max-width:44rem;width:90vw;left:50%;bottom:clamp(30px,8vh,90px);transform:translate(-50%,14px);text-align:center;pointer-events:none}
+.label.outro.on{transform:translate(-50%,0);pointer-events:auto}
+.label.outro h2{font-size:clamp(2rem,4.6vw,4rem)}
+.label.outro p{margin:0 auto 1.2em;max-width:26em}
+.label.intro{max-width:40rem;width:90vw;left:50%;top:auto;transform:translate(-50%,14px);text-align:center}
+.label.intro.on{transform:translate(-50%,0)}
+.label.intro p{font-family:var(--serif);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--paper)}
+
+.rail{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:6px;opacity:0;transition:opacity .4s}
+.rail.on{opacity:1}
+.rail button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:.82rem;color:var(--sky);padding:3px 0;border-radius:4px}
+.rail button::after{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;transition:all .25s}
+.rail button[aria-current="true"]{color:var(--yellow);font-weight:700}
+.rail button[aria-current="true"]::after{background:var(--yellow);width:12px;height:12px}
+.rail button:hover{color:var(--paper)}
+.rail button:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
+
+.tip{position:fixed;z-index:40;pointer-events:none;max-width:300px;background:var(--yellow);color:var(--navy);padding:10px 14px;border-radius:14px;font-size:.9rem;line-height:1.5;font-weight:500;opacity:0;transform:translate(16px,16px) scale(.96);transform-origin:0 0;transition:opacity .15s,transform .15s}
+.tip.on{opacity:1;transform:translate(16px,16px)}
+.tip b{display:block;font-weight:700}
+.tip span{font-size:.8rem;opacity:.75}
+
+.progress{position:absolute;left:0;top:0;height:3px;background:var(--yellow);z-index:3;width:0}
+
+/* footer */
+footer{background:var(--yellow);color:var(--navy);padding:clamp(48px,8vw,96px) var(--pad);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+footer img{width:clamp(110px,14vw,170px);border-radius:50%;display:block}
+footer h2{font-family:var(--display);font-variation-settings:'SOFT' 100,'opsz' 144;font-weight:900;font-size:clamp(2rem,5vw,4rem);line-height:1;margin:0 0 .35em}
+footer p{margin:0 0 1.2em;max-width:36em}
+footer .links{display:flex;gap:12px;flex-wrap:wrap}
+footer .btn{border-color:var(--navy);color:var(--navy)}
+footer .btn.solid{background:var(--navy);color:var(--yellow)}
+footer small{display:block;margin-top:1.6em;font-size:.82rem;opacity:.75}
+
+/* dialogs */
+dialog{border:0;padding:0;background:transparent;color:var(--paper);max-width:none;max-height:none}
+dialog::backdrop{background:rgba(2,16,20,.86);backdrop-filter:blur(6px)}
+#player[open]{display:flex;gap:28px;align-items:center;justify-content:center;width:min(1180px,94vw);flex-wrap:wrap}
+#player .frame{background:#000;border-radius:18px;overflow:hidden;box-shadow:0 0 0 3px var(--yellow)}
+#player .frame iframe{width:100%;height:100%;border:0;display:block}
+#player .frame.land{width:min(800px,92vw);aspect-ratio:16/9}
+#player .frame.port{height:min(78vh,720px);aspect-ratio:9/16}
+#player .meta{max-width:320px}
+#player h3{font-family:var(--serif);font-weight:900;font-size:1.5rem;line-height:1.35;margin:0 0 .4em;color:var(--yellow)}
+#player .meta p{color:var(--sky);margin:0 0 1.2em;font-size:.92rem}
+#player .meta div{display:flex;gap:10px;flex-wrap:wrap}
+
+#library[open]{width:100vw;height:100vh;height:100dvh;overflow:auto;background:var(--navy);padding:90px var(--pad) 80px}
+#library::backdrop{background:var(--navy)}
+#library .close{position:fixed;top:16px;right:var(--pad);z-index:2}
+#library>h2{font-family:var(--serif);font-weight:900;color:var(--yellow);font-size:clamp(2rem,4vw,3rem);margin:0 0 .2em}
+#library>p{color:var(--sky);margin:0 0 2em}
+#library section{margin:0 0 56px}
+#library h3{font-family:var(--serif);font-weight:900;font-size:1.6rem;margin:0 0 .2em}
+#library h3+p{color:var(--sky);margin:0 0 18px;max-width:40em}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.lgrid button{all:unset;cursor:pointer;display:block;border-radius:12px}
+.lgrid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;background:var(--cobalt)}
+.lgrid .s img{aspect-ratio:9/16}
+.lgrid span{display:block;font-size:.86rem;line-height:1.45;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lgrid button:hover span{color:var(--yellow)}
+
+.nogl .journey{height:auto!important}
+.nogl .stage{display:none}
+
+/* language switcher */
+.lang{position:absolute;left:50%;top:16px;transform:translateX(-50%);z-index:40}
+.lang-btn{font:500 .95rem/1 var(--sans);display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 13px;border-radius:999px;border:2px solid var(--yellow);background:rgba(6,35,42,.55);color:var(--yellow);cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 4px 0 #5E4419,0 8px 18px rgba(1,10,12,.35);transform:translateY(0);transition:transform .12s,box-shadow .12s,background .2s}
+.lang-btn:hover{background:rgba(217,174,82,.14)}
+.lang-btn:active,.lang-btn[aria-expanded="true"]{transform:translateY(3px);box-shadow:0 1px 0 #5E4419,0 4px 10px rgba(1,10,12,.35)}
+.lang-btn svg{width:18px;height:18px;flex:none}
+.lang-btn .cur{background:var(--yellow);color:var(--navy);font-weight:700;font-size:.78rem;border-radius:999px;padding:3px 8px}
+.lang-btn .caret{width:12px;height:12px;transition:transform .2s}
+.lang-btn[aria-expanded="true"] .caret{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);min-width:250px;white-space:nowrap;margin:0;padding:8px;list-style:none;background:var(--navy);border:2px solid var(--yellow);border-radius:18px;box-shadow:0 18px 40px rgba(1,10,12,.55)}
+.lang-menu[hidden]{display:none}
+.lang-menu button{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:11px 14px;border-radius:12px;cursor:pointer;color:var(--paper);font-size:1rem}
+.lang-menu button:hover,.lang-menu button:focus-visible{background:rgba(217,174,82,.14);outline:none}
+.lang-menu button[aria-checked="true"]{color:var(--yellow);font-weight:700}
+.lang-menu button[aria-checked="true"]::after{content:"";width:8px;height:14px;border:solid var(--yellow);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-2px,-2px)}
+.lang-menu small{color:var(--sky);font-size:.78rem;font-weight:400}
+html:lang(zh-Hans){--serif:'LXGW WenKai TC','Noto Serif SC','Noto Serif TC',serif;--sans:'Noto Sans SC','Noto Sans TC',system-ui,sans-serif}
+html:lang(en){--serif:'Cinzel','LXGW WenKai TC',serif}
+html:lang(en) .hero h1{font-size:clamp(2.4rem,4.8vw,4.4rem);letter-spacing:0;line-height:1.02;font-variation-settings:'SOFT' 100,'opsz' 144}
+html:lang(en) .label h2{letter-spacing:0}
+html:lang(en) .home3d .face b,html:lang(en) .gb3d .face b{letter-spacing:.01em}
+html:lang(en) .gb3d .face b{font-size:1.32rem}
+@media (max-width:760px){
+  .lang{top:16px}
+  .lang-btn{padding:9px 12px 9px 10px;gap:6px}
+  .lang-btn .word{display:none}
+  html:lang(en) .gb3d .face b{font-size:1.05rem}
+  html:lang(en) .hero h1{font-size:2.1rem;line-height:1.05}
+  html:lang(en) .hero p{font-size:.92rem;line-height:1.65}
+  .bar .btn{padding:10px 14px}
+}
+/* 3D home button */
+.home3d{position:fixed;top:76px;left:50%;z-index:36;border:0;padding:0;background:none;cursor:pointer;perspective:600px;font:inherit;-webkit-tap-highlight-color:transparent;
+  --rx:18deg;--ry:0deg;--lift:0px;transform:translate(-50%,-24px);opacity:0;visibility:hidden;transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1),visibility .3s}
+.home3d.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.home3d .tilt{position:relative;display:block;width:172px;height:58px;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--lift));transition:transform .18s ease-out}
+.home3d .layers{position:absolute;inset:0;transform-style:preserve-3d}
+.home3d .layer,.home3d .face{position:absolute;inset:0;border-radius:999px}
+.home3d .layer{background:#8C6526;border:3px solid var(--navy)}
+.home3d .face{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(170deg,#F0D08A 0%,var(--yellow) 50%,var(--yolk) 100%);border:3px solid var(--navy);color:var(--navy);transform:translateZ(1px);box-shadow:inset 0 3px 0 rgba(255,255,255,.55)}
+.home3d .face svg{width:26px;height:26px;flex:none}
+.home3d .face b{font-family:var(--serif);font-weight:900;font-size:1.3rem;letter-spacing:.08em;line-height:1}
+.home3d .shadow{position:absolute;left:10%;right:10%;bottom:-20px;height:14px;border-radius:50%;background:rgba(1,10,12,.5);filter:blur(7px);transform:translateZ(-30px)}
+.home3d:hover{--lift:12px}
+.home3d:active{--lift:-8px}
+.home3d:focus-visible{outline:none}
+.home3d:focus-visible .face{box-shadow:0 0 0 4px var(--paper),0 0 0 7px var(--navy)}
+@media (max-width:760px){
+  .home3d{top:auto;bottom:14px;left:14px;--rx:10deg;--ry:14deg;transform:translateY(24px)}
+  .home3d.on{transform:none}
+  .home3d .tilt{width:118px;height:66px}
+  .home3d .face{gap:6px}
+  .home3d .face svg{width:22px;height:22px}
+  .home3d .face b{font-size:1.1rem;letter-spacing:.04em}
+}
+/* 3D guestbook button */
+.gb3d{position:fixed;right:var(--pad);bottom:clamp(22px,4vh,40px);z-index:35;border:0;padding:0;background:none;cursor:pointer;perspective:700px;-webkit-tap-highlight-color:transparent;font:inherit;--rx:12deg;--ry:-18deg;--lift:0px}
+.gb3d .tilt{position:relative;display:block;width:212px;height:84px;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--lift));transition:transform .18s ease-out}
+.gb3d #gbLayers{position:absolute;inset:0;transform-style:preserve-3d}
+.gb3d .layer,.gb3d .face{position:absolute;inset:0;border-radius:42px 42px 42px 10px}
+.gb3d .layer{background:#8C6526;border:3px solid var(--navy)}
+.gb3d .face{display:flex;align-items:center;gap:12px;padding:0 22px 0 18px;background:linear-gradient(160deg,#F0D08A 0%,var(--yellow) 45%,var(--yolk) 100%);border:3px solid var(--navy);color:var(--navy);transform:translateZ(1px);box-shadow:inset 0 3px 0 rgba(255,255,255,.55)}
+.gb3d .face svg{flex:none;width:40px;height:40px}
+.gb3d .face b{display:block;font-family:var(--serif);font-weight:900;font-size:1.65rem;line-height:1.05;letter-spacing:.06em;text-align:left}
+.gb3d .face small{display:block;font-size:.78rem;font-weight:500;letter-spacing:.02em;opacity:.8;margin-top:3px;text-align:left}
+.gb3d .shadow{position:absolute;left:8%;right:8%;bottom:-26px;height:18px;border-radius:50%;background:rgba(1,10,12,.45);filter:blur(8px);transform:translateZ(-40px)}
+.gb3d:hover{--lift:14px}
+.gb3d:active{--lift:-10px}
+.gb3d:focus-visible{outline:none}
+.gb3d:focus-visible .face{box-shadow:0 0 0 4px var(--paper),0 0 0 7px var(--navy)}
+.gb3d .dot{position:absolute;top:-6px;right:14px;width:16px;height:16px;border-radius:50%;background:#C8402F;border:3px solid var(--navy);transform:translateZ(6px)}
+
+/* ---- 九哥話室 theme ---- */
+.brand span{font-family:var(--serif);font-weight:700;font-size:1.35rem;letter-spacing:.08em}
+.hero h1{font-weight:700;letter-spacing:.04em;text-shadow:0 2px 18px rgba(2,16,20,.7)}
+.label h2{font-weight:700;letter-spacing:.06em}
+footer h2{font-family:var(--serif);font-weight:700;letter-spacing:.06em}
+html:lang(en) .hero h1{font-family:var(--display);font-weight:800;letter-spacing:.01em;font-size:clamp(2.1rem,4vw,3.8rem);line-height:1.1}
+@media (max-width:760px){html:lang(en) .hero h1{font-size:1.65rem}}
+html:lang(en) .label h2,html:lang(en) footer h2{font-family:var(--display);font-weight:800;letter-spacing:.01em}
+.gb3d .layer,.gb3d .face{border-radius:18px}
+.gb3d .layer{background:#6E1A14;border-color:#2B0906}
+.gb3d .face{background:linear-gradient(155deg,#D8513C 0%,#B8322A 55%,#8E2219 100%);border-color:#2B0906;color:#F6E7C8;box-shadow:inset 0 2px 0 rgba(255,220,190,.35),inset 0 0 0 5px rgba(43,9,6,.35)}
+.gb3d .face svg path{fill:#F6E7C8}
+.gb3d .face svg circle{fill:#B8322A}
+.gb3d .face b{font-family:var(--serif);font-weight:700;letter-spacing:.02em;white-space:nowrap;font-size:1.55rem}
+.gb3d .dot{background:#D9AE52;border-color:#2B0906}
+.gb3d:focus-visible .face{box-shadow:0 0 0 4px var(--paper),0 0 0 7px #2B0906}
+/* guestbook dialog */
+#guestbook[open]{width:min(980px,94vw);max-height:90vh;max-height:90dvh;overflow:auto;background:var(--navy);border-radius:28px;box-shadow:0 0 0 3px var(--yellow);padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,48px)}
+#guestbook h2{font-family:var(--serif);font-weight:900;color:var(--yellow);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;margin:0 0 .3em}
+#guestbook .lead{color:var(--sky);margin:0 0 1.4em}
+#guestbook label{display:block;font-weight:700;margin:0 0 6px}
+#guestbook input,#guestbook textarea{width:100%;font:inherit;color:var(--navy);background:var(--paper);border:2px solid transparent;border-radius:14px;padding:12px 14px;margin:0 0 6px}
+#guestbook textarea{min-height:140px;resize:vertical;line-height:1.6}
+#guestbook input:focus,#guestbook textarea:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 3px rgba(217,174,82,.35)}
+#guestbook .count{display:block;text-align:right;font-size:.8rem;color:var(--sky);margin:0 0 14px}
+#guestbook .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+#guestbook .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#guestbook .status{min-height:1.6em;margin:12px 0 0;font-size:.92rem}
+#guestbook .status.ok{color:var(--yellow)}
+#guestbook .status.err{color:#F2A08F}
+#guestbook .wall h3{padding-right:88px;font-family:var(--serif);font-weight:900;font-size:1.25rem;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline}
+#guestbook .wall h3 #gbTotal{font-family:var(--sans);font-weight:400;font-size:.85rem;color:var(--sky)}
+#gbList{list-style:none;margin:0;padding:0 6px 0 0;display:grid;gap:12px;max-height:min(56vh,520px);overflow:auto}
+#gbList li{background:rgba(15,74,79,.55);border-radius:18px 18px 18px 6px;padding:14px 16px}
+#gbList li b{color:var(--yellow);font-weight:700}
+#gbList li time{float:right;font-size:.8rem;color:var(--sky)}
+#gbList li p{margin:6px 0 0;white-space:pre-wrap;word-break:break-word;line-height:1.65}
+#gbList .gb-reply time{float:right;font-size:.8rem;color:var(--sky)}
+.gb-replies{margin:12px 0 0 14px;padding-left:14px;border-left:2px solid rgba(217,174,82,.45);display:grid;gap:10px}
+.gb-reply b{color:var(--paper);font-weight:700}
+.gb-reply p{margin:4px 0 0;white-space:pre-wrap;word-break:break-word;line-height:1.6;font-size:.95rem}
+.gb-owner{display:flex;gap:10px;align-items:flex-start;margin:12px 0 0;background:var(--yellow);color:var(--navy);border-radius:16px 16px 16px 6px;padding:10px 14px}
+.gb-owner img{width:32px;height:32px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--navy)}
+.gb-owner b{color:var(--navy)!important;font-weight:900;display:flex;align-items:center;gap:6px}
+.gb-owner b span{font-size:.72rem;font-weight:700;background:var(--navy);color:var(--yellow);border-radius:999px;padding:1px 8px}
+.gb-owner p{margin:3px 0 0!important;white-space:pre-wrap;word-break:break-word;line-height:1.6;font-size:.95rem}
+.gb-rbtn{all:unset;cursor:pointer;margin-top:10px;font-size:.85rem;font-weight:700;color:var(--yellow);padding:4px 2px;border-radius:6px}
+.gb-rbtn:hover{text-decoration:underline}
+.gb-rbtn:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.gb-rform{margin-top:10px;display:grid;gap:8px}
+.gb-rform input,.gb-rform textarea{width:100%;font:inherit;color:var(--navy);background:var(--paper);border:2px solid transparent;border-radius:12px;padding:9px 12px;margin:0}
+.gb-rform textarea{min-height:80px;resize:vertical}
+.gb-rform input:focus,.gb-rform textarea:focus{outline:none;border-color:var(--yellow)}
+.gb-rform .btn{padding:9px 16px;font-size:.88rem}
+.gb-rform .status{margin:0;min-height:0;font-size:.88rem}
+.gb-rform .status.err{color:#F2A08F}
+.gb-ownerbar{display:flex;gap:10px;align-items:center;background:var(--yellow);color:var(--navy);border-radius:16px;padding:10px 14px;margin:0 88px 16px 0;font-size:.88rem;line-height:1.5}
+.gb-ownerbar[hidden]{display:none}
+.gb-ownerbar img{width:30px;height:30px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--navy)}
+.gb-ownerbar span{flex:1;white-space:nowrap}
+.gb-ownerbar button{all:unset;cursor:pointer;flex:none;font-weight:700;text-decoration:underline;padding:2px 4px;border-radius:4px}
+.gb-ownerbar button:focus-visible{outline:2px solid var(--navy)}
+.gb-rbtn.owner{background:var(--yellow);color:var(--navy);padding:5px 12px;border-radius:999px}
+.gb-rbtn.owner:hover{text-decoration:none;background:#E6C171}
+.gb-as{display:flex;gap:8px;align-items:center;font-size:.88rem;color:var(--paper)}
+.gb-as img{width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 2px var(--yellow)}
+.gb-as b{color:var(--yellow)}
+.gb-hint{font-size:.8rem;color:var(--sky)}
+#gbList .empty{background:none;border:2px dashed rgba(140,201,184,.4);color:var(--sky);text-align:center}
+#guestbook .x{position:absolute;top:14px;right:16px}
+@media (max-width:760px){
+  .gb3d{right:14px;bottom:14px}
+  .gb3d .tilt{width:164px;height:66px}
+  .gb3d .face{gap:8px;padding:0 14px 0 12px}
+  .gb3d .face svg{width:30px;height:30px}
+  .gb3d .face b{font-size:1.25rem}
+  .gb3d .face small{display:none}
+  .hero-copy{bottom:104px}
+  .label{bottom:100px}
+  #guestbook[open]{grid-template-columns:1fr;padding-top:60px}
+}
+@media (max-width:760px){
+  .bar nav .btn:not(.solid){display:none}
+  .brand span{display:none}
+  .hint{display:none}
+  .hero-copy{right:var(--pad);bottom:96px}
+  .hero p{font-size:.98rem;margin-bottom:1.2em}
+  .rail{display:none}
+  .label{right:var(--pad);bottom:96px}
+  .label p{font-size:.96rem}
+  .label.vertical{display:block}
+  .label.long h2{font-size:clamp(2.2rem,4.6vw,4.4rem)}
+.label.vertical h2{writing-mode:horizontal-tb}
+  footer{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#" id="skipList" data-i18n="skip">跳到影片列表</a>
+
+<header class="bar">
+  <a class="brand" href="#top" aria-label="九哥話室 回到頂端" data-i18n-aria="brandAria"><img src="__LOGO__" alt=""><span>九哥話室</span></a>
+  <div class="lang" id="lang">
+    <button class="lang-btn" type="button" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Language">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19"/></svg>
+      <span class="word">Language</span><span class="cur" id="langCur">繁中</span>
+      <svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <ul class="lang-menu" id="langMenu" role="menu" aria-label="Language" hidden>
+      <li role="none"><button type="button" role="menuitemradio" data-lang="zh-Hant" lang="zh-Hant">繁體中文 <small>Traditional Chinese</small></button></li>
+      <li role="none"><button type="button" role="menuitemradio" data-lang="zh-Hans" lang="zh-Hans">简体中文 <small>Simplified Chinese</small></button></li>
+      <li role="none"><button type="button" role="menuitemradio" data-lang="en" lang="en">English <small>英文</small></button></li>
+    </ul>
+  </div>
+  <nav aria-label="主要操作" data-i18n-aria="navAria">
+    <button class="btn" type="button" id="openList" data-i18n="list">影片列表</button>
+    <a class="btn solid" href="https://www.youtube.com/@BrotherNineHC?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="subscribe">訂閱頻道</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" aria-label="九哥話室頻道首頁" data-i18n-aria="heroAria">
+    <canvas id="heroGL" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <h1 data-i18n-html="heroH1">歷史的空白，<br>需要被重新計算。</h1>
+      <p data-i18n="heroP">九哥話室用工程師的底層邏輯拆解古文明：三星堆、秦始皇陵、山海經、金字塔，還有外星文明留下的痕跡。往下捲，__TOTAL__ 支影片沿著同一條時間軸看完。</p>
+      <div class="acts">
+        <a class="btn solid" href="#journey" id="startBtn" data-i18n="start">開始解碼</a>
+        <a class="btn" href="https://www.youtube.com/@BrotherNineHC" target="_blank" rel="noopener" data-i18n="toYT">到 YouTube 頻道</a>
+      </div>
+    </div>
+    <div class="hint" aria-hidden="true"><i></i><span data-i18n="hint">移動游標，攪動水銀</span></div>
+  </section>
+
+  <section class="journey" id="journey" aria-label="依主題瀏覽影片" data-i18n-aria="journeyAria">
+    <div class="stage" id="stage">
+      <canvas id="jGL" aria-hidden="true"></canvas>
+      <div class="progress" id="prog"></div>
+      <div id="labels"></div>
+      <nav class="rail" id="rail" aria-label="主題" data-i18n-aria="railAria"></nav>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="__LOGO__" alt="九哥話室標誌" data-i18n-alt="logoAlt">
+  <div>
+    <h2 data-i18n="footH2">九哥話室話盡天下事</h2>
+    <p data-i18n="footP">每週更新。歷史的空白處不該由猜測填充，訂閱後和九哥一起把它算清楚。也歡迎留言告訴我們，你最想解開的下一個謎。</p>
+    <div class="links">
+      <a class="btn solid" href="https://www.youtube.com/@BrotherNineHC?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="footSub">訂閱九哥話室</a>
+      <button class="btn" type="button" id="openList2" data-i18n="browseAll">瀏覽全部影片</button>
+    </div>
+    <small data-i18n="footSmall">© 九哥話室。影片與縮圖皆來自 YouTube 頻道 @BrotherNineHC。</small>
+  </div>
+</footer>
+
+<button class="home3d" type="button" id="homeBtn" aria-label="回主頁（回到網站最上方）" data-i18n-aria="homeAria">
+  <span class="tilt">
+    <span class="shadow" aria-hidden="true"></span>
+    <span class="layers" aria-hidden="true"></span>
+    <span class="face"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 11h2.8v9.5h5.2v-6h3v6h5.2V11h2.8z" fill="#06232A"/></svg><b data-i18n="home">回主頁</b></span>
+  </span>
+</button>
+
+<button class="gb3d" type="button" id="gbBtn" aria-haspopup="dialog">
+  <span class="tilt" id="gbTilt">
+    <span class="shadow" aria-hidden="true"></span>
+    <span id="gbLayers" aria-hidden="true"></span>
+    <span class="face">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 8h28a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H17l-8 7v-7H6a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z" fill="#06232A"/><circle cx="13" cy="18.5" r="2.3" fill="#D9AE52"/><circle cx="20" cy="18.5" r="2.3" fill="#D9AE52"/><circle cx="27" cy="18.5" r="2.3" fill="#D9AE52"/></svg>
+      <span><b data-i18n="gb">訪客留言</b><small data-i18n="gbSmall">寫幾句話給九哥</small></span>
+    </span>
+    <span class="dot" aria-hidden="true"></span>
+  </span>
+</button>
+
+<dialog id="guestbook" aria-labelledby="gbTitle">
+  <button class="btn x" type="button" id="gbClose" data-i18n="close">關閉</button>
+  <form id="gbForm" novalidate>
+    <h2 id="gbTitle" data-i18n-html="gbTitle">留言給<br>九哥話室</h2>
+    <p class="lead" data-i18n="gbLead">不用註冊。想看哪個謎團被解開、對哪支影片有想法，或只是打聲招呼都可以。</p>
+    <label for="gbName" data-i18n="name">暱稱</label>
+    <input id="gbName" name="name" maxlength="30" autocomplete="nickname" required>
+    <span class="count" aria-hidden="true">&nbsp;</span>
+    <label for="gbMsg" data-i18n="message">留言</label>
+    <textarea id="gbMsg" name="msg" maxlength="500" required></textarea>
+    <span class="count" id="gbCount">0 / 500</span>
+    <div class="hp" aria-hidden="true"><label>網站<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="row"><button class="btn solid" type="submit" id="gbSend" data-i18n="send">送出留言</button></div>
+    <p class="status" id="gbStatus" role="status" aria-live="polite"></p>
+  </form>
+  <section class="wall" aria-label="大家的留言" data-i18n-aria="wall">
+    <div class="gb-ownerbar" id="gbOwnerBar" hidden><img id="gbOwnerImg" alt=""><span><b data-i18n="ownerOn">站長模式已開啟</b></span><button type="button" id="gbOwnerOff" data-i18n="ownerOff">結束站長模式</button></div>
+    <h3><span data-i18n="wall">大家的留言</span> <span id="gbTotal"></span></h3>
+    <ul id="gbList"><li class="empty" data-i18n="loading">正在讀取留言…</li></ul>
+  </section>
+</dialog>
+
+<div class="tip" id="tip" role="presentation"></div>
+
+<dialog id="player" aria-label="播放影片" data-i18n-aria="playerAria">
+  <div class="frame land" id="pframe"></div>
+  <div class="meta">
+    <h3 id="ptitle"></h3>
+    <p id="pmeta"></p>
+    <div>
+      <a class="btn solid" id="pyt" href="#" target="_blank" rel="noopener" data-i18n="watchYT">在 YouTube 觀看</a>
+      <button class="btn" type="button" id="pclose" data-i18n="close">關閉</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="library" aria-label="全部影片列表" data-i18n-aria="libAria">
+  <button class="btn solid close" type="button" id="lclose" data-i18n="lclose">關閉列表</button>
+<button class="home3d on" type="button" id="homeBtnLib" aria-label="回主頁（回到網站最上方）" data-i18n-aria="homeAria">
+  <span class="tilt">
+    <span class="shadow" aria-hidden="true"></span>
+    <span class="layers" aria-hidden="true"></span>
+    <span class="face"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 11h2.8v9.5h5.2v-6h3v6h5.2V11h2.8z" fill="#06232A"/></svg><b data-i18n="home">回主頁</b></span>
+  </span>
+</button>
+  <h2 data-i18n="libH2">全部影片</h2>
+  <p data-i18n="libP">__TOTAL__ 支影片，依 6 個主題排列。點任一支直接播放。</p>
+  <div id="lbody"></div>
+</dialog>
+
+<script>
+__DATA__
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const LOGO = '__LOGO__';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 自訂平滑捲動：不依賴瀏覽器的 smooth，各瀏覽器行為一致；使用者一滾輪/觸控就中止 */
+let scrollAnim=0;
+function glideTo(y){
+  cancelAnimationFrame(scrollAnim);
+  const max=document.documentElement.scrollHeight-innerHeight; y=Math.max(0,Math.min(max,y));
+  const from=scrollY, dist=y-from;
+  if(reduce||Math.abs(dist)<2){ scrollTo(0,y); return; }
+  const dur=Math.min(1600,450+Math.abs(dist)/12), t0=performance.now();
+  const stop=()=>{ cancelAnimationFrame(scrollAnim); removeEventListener('wheel',stop); removeEventListener('touchstart',stop); };
+  addEventListener('wheel',stop,{passive:true,once:true}); addEventListener('touchstart',stop,{passive:true,once:true});
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  (function step(now){ const t=Math.min(1,(now-t0)/dur); scrollTo(0,from+dist*ease(t)); if(t<1) scrollAnim=requestAnimationFrame(step); else stop(); })(t0);
+}
+
+/* ---------- i18n ---------- */
+const LANGS={'zh-Hant':{short:'繁中',html:'zh-Hant',rtf:'zh-TW'},'zh-Hans':{short:'简中',html:'zh-Hans',rtf:'zh-CN'},en:{short:'EN',html:'en',rtf:'en'}};
+const STR={
+'zh-Hant':{
+ title:'九哥話室｜用工程師的邏輯解碼古文明',
+ metaDesc:'九哥話室：用工程師的底層邏輯解碼三星堆、秦始皇陵、山海經、金字塔與外星文明之謎。{total} 支影片，一鏡看完。',
+ skip:'跳到影片列表', brandAria:'九哥話室 回到頂端', navAria:'主要操作', list:'影片列表', subscribe:'訂閱頻道',
+ heroAria:'九哥話室頻道首頁', heroH1:'歷史的空白，<br>需要被重新計算。',
+ heroP:'九哥話室用工程師的底層邏輯拆解古文明：三星堆、秦始皇陵、山海經、金字塔，還有外星文明留下的痕跡。往下捲，{total} 支影片沿著同一條時間軸看完。',
+ start:'開始解碼', toYT:'到 YouTube 頻道', hint:'移動游標，攪動水銀', journeyAria:'依主題瀏覽影片', railAria:'主題',
+ logoAlt:'九哥話室標誌', footH2:'九哥話室話盡天下事',
+ footP:'每週更新。歷史的空白處不該由猜測填充，訂閱後和九哥一起把它算清楚。也歡迎留言告訴我們，你最想解開的下一個謎。',
+ footSub:'訂閱九哥話室', browseAll:'瀏覽全部影片', footSmall:'© 九哥話室。影片與縮圖皆來自 YouTube 頻道 @BrotherNineHC。',
+ home:'回主頁', homeAria:'回主頁（回到網站最上方）', gb:'訪客留言', gbSmall:'寫幾句話給九哥', close:'關閉',
+ gbTitle:'留言給<br>九哥話室', gbLead:'不用註冊。想看哪個謎團被解開、對哪支影片有想法，或只是打聲招呼都可以。',
+ name:'暱稱', message:'留言', send:'送出留言', wall:'大家的留言', ownerOn:'站長模式已開啟', ownerOff:'結束站長模式', loading:'正在讀取留言…',
+ playerAria:'播放影片', watchYT:'在 YouTube 觀看', libAria:'全部影片列表', lclose:'關閉列表', libH2:'全部影片', libP:'{total} 支影片，依 6 個主題排列。點任一支直接播放。',
+ libCount:'（{n} 支）', video:'影片', shorts:'Shorts', untitled:'九哥話室影片', sep:'｜',
+ views:'{n} 次觀看', views10k:'{n} 萬次觀看', tip:'{kind}，{views}，點擊播放',
+ intro:'穿過銅鏡，6 個主題、{total} 支影片沿著同一條時間軸展開。',
+ countBase:'{n} 支影片', countSome:'，其中 {sh} 支 Shorts', countAll:'，全是 Shorts', countTail:'。點卡片直接播放。',
+ outroH2:'歷史的空白，一起算清楚。', outroP:'新影片每週更新在 YouTube。訂閱九哥話室，下一個被解碼的謎團不會錯過。',
+ ownerTag:'站長', ownerAs:'以 <b>九哥話室 站長</b> 身分回覆 {name}', ownerReplyLabel:'站長回覆內容', ownerPh:'寫下給 {name} 的回覆…',
+ ownerHint:'已有站長回覆，送出會取代原內容；清空後送出可刪除。', ownerUpdate:'更新站長回覆', ownerSend:'送出站長回覆', cancel:'取消',
+ replyLabel:'回覆 {name}', namePh:'你的暱稱', replyPh:'回覆 {name}…', sendReply:'送出回覆',
+ errOwnerEmpty:'請寫下回覆內容。', errReplyEmpty:'請填寫暱稱和回覆內容。', sending:'送出中…',
+ errReplyFail:'回覆沒有送出：{msg}', errReplyNet:'回覆沒有送出：網路連線中斷，請稍後再試。',
+ empty:'還沒有人留言。第一則留給你。', total:'{n} 則', totalReplies:'，{n} 則回覆',
+ btnOwnerEdit:'修改站長回覆', btnOwner:'站長回覆', btnReplyN:'回覆（{n}）', btnReply:'回覆', replyAria:'回覆 {name} 的留言',
+ notOpen:'留言板即將開放。', loadFail:'留言讀取失敗。請檢查網路連線後重新打開留言板。',
+ errEmpty:'請填寫暱稱和留言再送出。', errClosed:'留言板尚未開放，請稍後再來。', ok:'已送出留言，謝謝你！',
+ errFail:'留言沒有送出：{msg}', errNet:'留言沒有送出：網路連線中斷，請稍後再試。',
+ ownerExpired:'站長連結已失效，請在 Apps Script 重新執行 setupOwnerMode。', now:'剛剛',
+},
+en:{
+ title:'九哥話室 Brother Nine | Decoding ancient civilizations with an engineer\'s logic',
+ metaDesc:'九哥話室 (Brother Nine) decodes Sanxingdui, the First Emperor\'s tomb, the Shan Hai Jing, the pyramids and alien mysteries with an engineer\'s logic. {total} videos in one continuous journey.',
+ skip:'Skip to the video list', brandAria:'九哥話室, back to top', navAria:'Main actions', list:'Videos', subscribe:'Subscribe',
+ heroAria:'九哥話室 channel home', heroH1:'History\'s blank spaces<br>need recalculating.',
+ heroP:'Brother Nine takes apart ancient civilizations with an engineer\'s logic: Sanxingdui, the First Emperor\'s tomb, the Shan Hai Jing, the pyramids and the traces alien civilizations may have left. Scroll down to see all {total} videos along one timeline.',
+ start:'Start decoding', toYT:'Visit the YouTube channel', hint:'Move your cursor to stir the mercury', journeyAria:'Browse videos by topic', railAria:'Topics',
+ logoAlt:'九哥話室 logo', footH2:'Brother Nine talks about everything',
+ footP:'New videos every week. History\'s gaps shouldn\'t be filled with guesses. Subscribe and work them out with Brother Nine, and leave a message about the next mystery you want cracked.',
+ footSub:'Subscribe to 九哥話室', browseAll:'Browse all videos', footSmall:'© 九哥話室. Videos and thumbnails come from the YouTube channel @BrotherNineHC. Video titles are shown in their original language.',
+ home:'Home', homeAria:'Home (back to the top of the site)', gb:'Guestbook', gbSmall:'Say hi to Brother Nine', close:'Close',
+ gbTitle:'Leave a message for<br>Brother Nine', gbLead:'No sign-up needed. Suggest a mystery to crack, share your thoughts on a video, or just say hi.',
+ name:'Name', message:'Message', send:'Send message', wall:'Messages', ownerOn:'Owner mode is on', ownerOff:'Exit owner mode', loading:'Loading messages…',
+ playerAria:'Play video', watchYT:'Watch on YouTube', libAria:'All videos', lclose:'Close list', libH2:'All videos', libP:'{total} videos in 6 topics. Click any of them to play.',
+ libCount:' ({n} videos)', video:'Video', shorts:'Short', untitled:'九哥話室 video', sep:' | ',
+ views:'{n} views', views10k:'{n} views', tip:'{kind}, {views}. Click to play.',
+ intro:'Through the bronze mirror: 6 topics and {total} videos along one timeline.',
+ countBase:'{n} videos', countSome:', {sh} of them Shorts', countAll:', all Shorts', countTail:'. Click a card to play.',
+ outroH2:'Let\'s work out history\'s gaps together.', outroP:'New videos land on YouTube every week. Subscribe to 九哥話室 so you don\'t miss the next mystery decoded.',
+ ownerTag:'Owner', ownerAs:'Replying as <b>九哥話室 (owner)</b> to {name}', ownerReplyLabel:'Owner reply', ownerPh:'Write a reply to {name}…',
+ ownerHint:'There is already an owner reply. Sending replaces it; send an empty reply to delete it.', ownerUpdate:'Update owner reply', ownerSend:'Send owner reply', cancel:'Cancel',
+ replyLabel:'Reply to {name}', namePh:'Your name', replyPh:'Reply to {name}…', sendReply:'Send reply',
+ errOwnerEmpty:'Write a reply first.', errReplyEmpty:'Enter your name and a reply.', sending:'Sending…',
+ errReplyFail:'Reply not sent: {msg}', errReplyNet:'Reply not sent: the connection dropped. Try again in a moment.',
+ empty:'No messages yet. Be the first.', total:'{n} messages', totalOne:'1 message', totalReplies:', {n} replies', totalReplyOne:', 1 reply',
+ btnOwnerEdit:'Edit owner reply', btnOwner:'Owner reply', btnReplyN:'Reply ({n})', btnReply:'Reply', replyAria:'Reply to {name}',
+ notOpen:'The guestbook opens soon.', loadFail:'Couldn\'t load messages. Check your connection and open the guestbook again.',
+ errEmpty:'Enter your name and a message before sending.', errClosed:'The guestbook isn\'t open yet. Please come back later.', ok:'Message sent. Thank you!',
+ errFail:'Message not sent: {msg}', errNet:'Message not sent: the connection dropped. Try again in a moment.',
+ ownerExpired:'The owner link has expired. Run setupOwnerMode in Apps Script again.', now:'just now',
+ 'cat.shanhai.name':'Myths Decoded', 'cat.shanhai.desc':'Kunlun, the Jianmu tree, Kuafu, Nüwa. Reading the Shan Hai Jing as an ancient map and checking it against real dig sites.',
+ 'cat.sxd.name':'Sanxingdui', 'cat.sxd.desc':'Protruding-eye masks, bronze sacred trees, meteoric iron. The ancient Shu left a language no one can read yet.',
+ 'cat.qin.name':'The First Emperor', 'cat.qin.desc':'Rivers of mercury, underground altars, painted terracotta warriors. A tomb unopened for 2,200 years, examined with geomagnetic scans and engineering logic.',
+ 'cat.ancient.name':'Lost Civilizations', 'cat.ancient.desc':'Pyramids, the Maya calendar, Sumerian tablets, Göbekli Tepe. Where the textbooks fall short, the numbers get run again.',
+ 'cat.cosmos.name':'Cosmic Files', 'cat.cosmos.desc':'UFOs, the forbidden zone in Antarctica, the unexplained 4% of human DNA. Looking for alien traces in declassified files.',
+ 'cat.now.name':'News & Tech', 'cat.now.desc':'How Amazon, Apple and Alibaba became giants, how to get the most out of ChatGPT, and the week\'s world news.',
+}};
+const SRV_EN={'請填寫暱稱和留言。':'Enter your name and a message.','這個暱稱保留給站長使用，請換一個。':'That name is reserved for the channel owner. Please pick another.',
+ '要回覆的留言已不存在。':'The message you replied to no longer exists.','資料格式錯誤。':'Something went wrong with the request.','請選擇要回覆的留言。':'Choose a message to reply to.'};
+let LANG=localStorage.getItem('nbLang'); if(!LANGS[LANG]) LANG='zh-Hant';
+let toCN=null;
+const onLang=[];
+function loadOpenCC(){
+  if(toCN) return Promise.resolve();
+  return new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src='https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/t2cn.js';
+    sc.onload=()=>{ try{ toCN=OpenCC.Converter({from:'twp',to:'cn'}); }catch(e){ toCN=OpenCC.Converter({from:'tw',to:'cn'}); } res(); }; sc.onerror=rej; document.head.appendChild(sc); });
+}
+function loadSCFonts(){
+  if(document.getElementById('scFonts')) return;
+  const l=document.createElement('link'); l.id='scFonts'; l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap'; document.head.appendChild(l);
+}
+const zh=s=>(LANG==='zh-Hans'&&toCN)?toCN(s):s;          // 使用者內容（影片標題、留言）
+function t(key,vars){
+  let s=STR[LANG==='en'?'en':'zh-Hant'][key]; if(s==null) s=STR['zh-Hant'][key]; if(s==null) return key;
+  if(vars) s=s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!=null?vars[k]:'');
+  return LANG==='en'?s:zh(s);
+}
+function srvMsg(m){ if(!m) return m; if(LANG==='en') return SRV_EN[m]||(/金鑰/.test(m)?'Invalid owner key.':m); return zh(m); }
+function applyStatic(root=document){
+  const total=RAW.length;
+  root.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent=t(el.dataset.i18n,{total}); });
+  root.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML=t(el.dataset.i18nHtml,{total}); });
+  root.querySelectorAll('[data-i18n-aria]').forEach(el=>{ el.setAttribute('aria-label',t(el.dataset.i18nAria,{total})); });
+  root.querySelectorAll('[data-i18n-alt]').forEach(el=>{ el.alt=t(el.dataset.i18nAlt,{total}); });
+  document.title=t('title');
+  const md=document.querySelector('meta[name="description"]'); if(md) md.content=t('metaDesc',{total});
+}
+async function setLang(l){
+  if(!LANGS[l]) return;
+  if(l==='zh-Hans'){ loadSCFonts(); try{ await loadOpenCC(); }catch(e){ alert('简体中文转换载入失败，请检查网络后再试。'); return; } }
+  LANG=l; localStorage.setItem('nbLang',l);
+  document.documentElement.lang=LANGS[l].html;
+  applyStatic(); onLang.forEach(f=>{ try{ f(); }catch(e){ console.error(e); } });
+}
+if(LANG==='zh-Hans'){ loadSCFonts(); try{ await loadOpenCC(); }catch(e){ LANG='zh-Hant'; } }
+document.documentElement.lang=LANGS[LANG].html;
+
+/* ---------- categories ---------- */
+const CATS = [
+  {key:'shanhai', name:'山海經・神話解碼', en:'Myths Decoded', form:'kunlun', long:true, desc:'崑崙、建木、夸父、女媧。把《山海經》當成一份上古地圖，對照考古現場逐條驗證。'},
+  {key:'sxd', name:'三星堆', en:'Sanxingdui', form:'tree', desc:'縱目面具、青銅神樹、天外隕鐵。三千年前的古蜀人，留下一套至今讀不懂的語言。'},
+  {key:'qin', name:'秦始皇陵', en:'The First Emperor', form:'army', desc:'水銀江河、地底祭壇、彩色兵馬俑。兩千兩百年沒人敢開的地宮，用地磁掃描和工程邏輯拆解。'},
+  {key:'ancient', name:'失落古文明', en:'Lost Civilizations', form:'pyramid', desc:'金字塔、瑪雅曆法、蘇美爾泥板、哥貝克力石陣。教科書解釋不了的地方，重新計算一次。'},
+  {key:'cosmos', name:'星際檔案', en:'Cosmic Files', form:'orbit', desc:'UFO、南極禁區、人類 DNA 裡那 4% 的空白。從解密檔案裡找外星文明的痕跡。'},
+  {key:'now', name:'時事與科技', en:'News & Tech', form:'newswall', desc:'Amazon、Apple、阿里巴巴怎麼長成巨頭，ChatGPT 怎麼用最省時間，還有每週國際大事。'},
+];
+function classify([id,t,s,v,p]){
+  const has=(...a)=>a.some(i=>p.includes(i)), m=re=>re.test(t);
+  if(has(4)||m(/秦始皇|兵馬俑/)) return 'qin';
+  if(has(1)||m(/三星堆/)) return 'sxd';
+  if(has(0)||m(/山海經|女媧|黃帝|炎帝|夸父|大禹|后羿|精衛|堯舜|商湯|易經|盤古|崑崙|神農|蚩尤|西王母/)) return 'shanhai';
+  if(m(/UFO|外星|南極|百慕達|DNA|蘇聯|宇航員|NASA/)) return 'cosmos';
+  if(has(2)||m(/Amazon|Apple|阿里巴巴|ChatGPT|眼鏡|國際/)) return 'now';
+  if(has(3)) return 'ancient';
+  return m(/AI/)?'now':'ancient';
+}
+const VIDEOS = RAW.map(r=>({id:r[0], title:(r[1]||'').replace(/[\s\-–—:：]+$/,''), short:!!r[2], views:r[3], cat:classify(r)}));
+CATS.forEach(c=>{ c.items=VIDEOS.filter(v=>v.cat===c.key); });
+const fmtViews=v=>LANG==='en'?t('views',{n:new Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1}).format(v)})
+  :(v>=10000?t('views10k',{n:(v/10000).toFixed(1).replace(/\.0$/,'')}):t('views',{n:v.toLocaleString()}));
+const vTitle=v=>v.title?zh(v.title):t('untitled');
+const catName=c=>LANG==='en'?t(`cat.${c.key}.name`):zh(c.name);
+const catSub=c=>LANG==='en'?c.name:c.en;
+const catDesc=c=>LANG==='en'?t(`cat.${c.key}.desc`):zh(c.desc);
+const kindOf=v=>v.short?t('shorts'):t('video');
+const thumb=v=>v.short?`https://i.ytimg.com/vi/${v.id}/frame0.jpg`:`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`;
+
+/* ---------- player & library ---------- */
+const player=document.getElementById('player'), pframe=document.getElementById('pframe');
+function openVideo(v){
+  pframe.className='frame '+(v.short?'port':'land');
+  pframe.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0" title="${vTitle(v).replace(/"/g,'&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  document.getElementById('ptitle').textContent=vTitle(v);
+  const cat=CATS.find(c=>c.key===v.cat);
+  document.getElementById('pmeta').textContent=[catName(cat),kindOf(v),fmtViews(v.views)].join(t('sep'));
+  document.getElementById('pyt').href=v.short?`https://www.youtube.com/shorts/${v.id}`:`https://www.youtube.com/watch?v=${v.id}`;
+  player.showModal();
+}
+player.addEventListener('close',()=>{pframe.innerHTML='';});
+player.addEventListener('click',e=>{ if(e.target===player) player.close(); });
+document.getElementById('pclose').onclick=()=>player.close();
+
+const library=document.getElementById('library'); let libBuilt=false;
+function buildLibrary(target){
+  const frag=document.createDocumentFragment();
+  CATS.forEach(c=>{
+    const sec=document.createElement('section');
+    sec.innerHTML=`<h3></h3><p></p><div class="lgrid"></div>`;
+    sec.querySelector('h3').textContent=catName(c); sec.querySelector('p').textContent=catDesc(c)+t('libCount',{n:c.items.length});
+    const g=sec.querySelector('.lgrid');
+    c.items.forEach(v=>{
+      const b=document.createElement('button'); b.type='button'; if(v.short) b.className='s';
+      b.innerHTML=`<img loading="lazy" alt="" src="${v.short?`https://i.ytimg.com/vi/${v.id}/frame0.jpg`:`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`}"><span></span>`;
+      b.querySelector('span').textContent=vTitle(v);
+      b.onclick=()=>openVideo(v); g.appendChild(b);
+    });
+    frag.appendChild(sec);
+  });
+  target.appendChild(frag);
+}
+onLang.push(()=>{ if(libBuilt){ const lb=document.getElementById('lbody'); lb.innerHTML=''; buildLibrary(lb); } });
+function openLibrary(e){ e&&e.preventDefault(); if(!libBuilt){buildLibrary(document.getElementById('lbody'));libBuilt=true;} library.showModal(); }
+document.getElementById('openList').onclick=openLibrary;
+document.getElementById('openList2').onclick=openLibrary;
+document.getElementById('skipList').onclick=openLibrary;
+document.getElementById('lclose').onclick=()=>library.close();
+
+/* ---------- guestbook ---------- */
+const GUESTBOOK_URL = '__GUESTBOOK_URL__';
+(function guestbook(){
+  const btn=document.getElementById('gbBtn'), layers=document.getElementById('gbLayers');
+  const DEPTH=14;
+  for(let i=DEPTH;i>=1;i--){ const l=document.createElement('span'); l.className='layer'; l.style.transform=`translateZ(${-i*1.6}px)`; l.style.filter=`brightness(${1-i*.025})`; layers.appendChild(l); }
+  if(!reduce){
+    addEventListener('pointermove',e=>{
+      const r=btn.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+      const dx=Math.max(-1,Math.min(1,(e.clientX-cx)/(innerWidth*.5))), dy=Math.max(-1,Math.min(1,(e.clientY-cy)/(innerHeight*.5)));
+      btn.style.setProperty('--ry',`${-12+dx*22}deg`); btn.style.setProperty('--rx',`${10-dy*16}deg`);
+    },{passive:true});
+  }
+  const dlg=document.getElementById('guestbook'), form=document.getElementById('gbForm'), list=document.getElementById('gbList');
+  const status=document.getElementById('gbStatus'), send=document.getElementById('gbSend'), msg=document.getElementById('gbMsg');
+  const total=document.getElementById('gbTotal'), countEl=document.getElementById('gbCount'), nameEl=document.getElementById('gbName');
+  const configured=/^https:\/\/script\.google\.com\//.test(GUESTBOOK_URL);
+  let rtf=new Intl.RelativeTimeFormat(LANGS[LANG].rtf,{numeric:'auto'});
+  function ago(iso){ const s=(new Date(iso)-Date.now())/1000, a=Math.abs(s);
+    if(a<60) return t('now'); if(a<3600) return rtf.format(Math.round(s/60),'minute'); if(a<86400) return rtf.format(Math.round(s/3600),'hour');
+    if(a<86400*30) return rtf.format(Math.round(s/86400),'day'); return new Date(iso).toLocaleDateString('zh-TW'); }
+  let lastItems=null;
+  onLang.push(()=>{ rtf=new Intl.RelativeTimeFormat(LANGS[LANG].rtf,{numeric:'auto'}); status.textContent=''; if(lastItems) render(lastItems); });
+  const savedName=localStorage.getItem('nbGbName')||''; if(savedName) nameEl.value=savedName;
+  function entry(it,cls){
+    const d=document.createElement('div'); d.className=cls; d.innerHTML='<b></b><time></time><p></p>';
+    d.querySelector('b').textContent=zh(it.name); const tm=d.querySelector('time'); tm.dateTime=it.t; tm.textContent=ago(it.t);
+    d.querySelector('p').textContent=zh(it.msg); return d;
+  }
+  function ownerBox(text){
+    const d=document.createElement('div'); d.className='gb-owner';
+    d.innerHTML=`<img src="${LOGO}" alt=""><div><b>九哥話室<span>${t('ownerTag')}</span></b><p></p></div>`;
+    d.querySelector('p').textContent=zh(text); return d;
+  }
+  /* 站長模式：Email 連結 #owner=金鑰 → 存在這台裝置，向後端驗證後才啟用 */
+  const ownerBar=document.getElementById('gbOwnerBar');
+  document.getElementById('gbOwnerImg').src=LOGO;
+  let ownerKey=localStorage.getItem('nbOwnerKey')||'', isOwner=false, ownerChecked=false;
+  const hashKey=(location.hash.match(/^#owner=([A-Za-z0-9]+)$/)||[])[1];
+  if(hashKey){ ownerKey=hashKey; localStorage.setItem('nbOwnerKey',hashKey); history.replaceState(null,'',location.pathname+location.search); }
+  async function checkOwner(){
+    if(ownerChecked||!ownerKey||!configured) return;
+    ownerChecked=true;
+    try{ await post({ownerKey,verify:true}); isOwner=true; }
+    catch(err){ isOwner=false; if(/金鑰/.test(err.message)){ localStorage.removeItem('nbOwnerKey'); ownerKey=''; status.className='status err'; status.textContent=t('ownerExpired'); } else ownerChecked=false; }
+    ownerBar.hidden=!isOwner;
+  }
+  document.getElementById('gbOwnerOff').onclick=()=>{ localStorage.removeItem('nbOwnerKey'); ownerKey=''; isOwner=false; ownerBar.hidden=true; load(); };
+  const esc=s=>s.replace(/[<&"]/g,'');
+  function replyForm(li,it){
+    const old=li.querySelector('.gb-rform'); if(old){ old.remove(); return; }
+    list.querySelectorAll('.gb-rform').forEach(f=>f.remove());
+    const f=document.createElement('form'); f.className='gb-rform'+(isOwner?' as-owner':''); f.noValidate=true;
+    f.innerHTML=isOwner
+      ? `<div class="gb-as"><img src="${LOGO}" alt=""><span>${t('ownerAs',{name:esc(zh(it.name))})}</span></div>
+         <label class="sr" for="r-${it.id}">${t('ownerReplyLabel')}</label>
+         <textarea id="r-${it.id}" name="msg" maxlength="500" placeholder="${t('ownerPh',{name:esc(zh(it.name))})}"></textarea>
+         ${it.owner?`<small class="gb-hint">${t('ownerHint')}</small>`:''}
+         <div class="row"><button class="btn solid" type="submit">${it.owner?t('ownerUpdate'):t('ownerSend')}</button><button class="btn" type="button" data-cancel>${t('cancel')}</button></div>
+         <p class="status" role="status" aria-live="polite"></p>`
+      : `<label class="sr" for="r-${it.id}">${t('replyLabel',{name:esc(zh(it.name))})}</label>
+         <input name="name" maxlength="30" placeholder="${t('namePh')}" autocomplete="nickname">
+         <textarea id="r-${it.id}" name="msg" maxlength="500" placeholder="${t('replyPh',{name:esc(zh(it.name))})}"></textarea>
+         <div class="row"><button class="btn solid" type="submit">${t('sendReply')}</button><button class="btn" type="button" data-cancel>${t('cancel')}</button></div>
+         <p class="status" role="status" aria-live="polite"></p>`;
+    const n=f.querySelector('input'), m=f.querySelector('textarea'), st=f.querySelector('.status'), sb=f.querySelector('[type=submit]'), label=sb.textContent;
+    if(n) n.value=nameEl.value.trim()||localStorage.getItem('nbGbName')||'';
+    if(isOwner&&it.owner) m.value=it.owner;
+    f.querySelector('[data-cancel]').onclick=()=>f.remove();
+    f.addEventListener('submit',async e=>{
+      e.preventDefault(); st.className='status';
+      const text=m.value.trim();
+      if(isOwner){
+        if(!text&&!it.owner){ st.classList.add('err'); st.textContent=t('errOwnerEmpty'); m.focus(); return; }
+      }else{
+        const name=n.value.trim();
+        if(!name||!text){ st.classList.add('err'); st.textContent=t('errReplyEmpty'); (name?m:n).focus(); return; }
+      }
+      sb.disabled=true; sb.textContent=t('sending');
+      try{
+        if(isOwner) await post({ownerKey,parent:it.id,msg:text});
+        else{ const name=n.value.trim(); await post({name,msg:text,parent:it.id}); localStorage.setItem('nbGbName',name); if(!nameEl.value) nameEl.value=name; }
+        load();
+      }catch(err){ st.classList.add('err'); st.textContent=err.message?t('errReplyFail',{msg:srvMsg(err.message)}):t('errReplyNet'); sb.disabled=false; sb.textContent=label; }
+    });
+    li.appendChild(f); (n&&!n.value?n:m).focus();
+  }
+  function render(items){
+    list.innerHTML='';
+    lastItems=items;
+    if(!items.length){ list.innerHTML=`<li class="empty">${t('empty')}</li>`; total.textContent=''; return; }
+    const nReplies=items.reduce((a,it)=>a+(it.replies?it.replies.length:0),0);
+    total.textContent=(LANG==='en'&&items.length===1?t('totalOne'):t('total',{n:items.length}))+(nReplies?(LANG==='en'&&nReplies===1?t('totalReplyOne'):t('totalReplies',{n:nReplies})):'');
+    for(const it of items){
+      const li=document.createElement('li'); li.appendChild(entry(it,'gb-msg'));
+      if(it.owner) li.appendChild(ownerBox(it.owner));
+      if(it.replies&&it.replies.length){
+        const ul=document.createElement('div'); ul.className='gb-replies';
+        for(const r of it.replies){ const rd=entry(r,'gb-reply'); if(r.owner) rd.appendChild(ownerBox(r.owner)); ul.appendChild(rd); }
+        li.appendChild(ul);
+      }
+      if(it.id){
+        const rb=document.createElement('button'); rb.type='button'; rb.className='gb-rbtn';
+        rb.textContent=isOwner?(it.owner?t('btnOwnerEdit'):t('btnOwner')):(it.replies&&it.replies.length?t('btnReplyN',{n:it.replies.length}):t('btnReply'));
+        if(isOwner) rb.classList.add('owner');
+        rb.setAttribute('aria-label',t('replyAria',{name:zh(it.name)})); rb.onclick=()=>replyForm(li,it); li.appendChild(rb);
+      }
+      list.appendChild(li);
+    }
+  }
+  async function post(body){
+    const r=await fetch(GUESTBOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+    const j=await r.json(); if(!j.ok) throw new Error(j.error||''); return j;
+  }
+  async function load(){
+    if(!configured){ list.innerHTML=`<li class="empty">${t('notOpen')}</li>`; return; }
+    try{ await checkOwner(); const r=await fetch(GUESTBOOK_URL,{cache:'no-store'}); const j=await r.json(); render(j.list||[]); }
+    catch(e){ list.innerHTML=`<li class="empty">${t('loadFail')}</li>`; }
+  }
+  btn.addEventListener('click',()=>{ dlg.showModal(); load(); setTimeout(()=>nameEl.focus(),50); });
+  if(hashKey) setTimeout(()=>{ dlg.showModal(); load(); },600);
+  addEventListener('hashchange',()=>{
+    const k=(location.hash.match(/^#owner=([A-Za-z0-9]+)$/)||[])[1]; if(!k) return;
+    ownerKey=k; localStorage.setItem('nbOwnerKey',k); history.replaceState(null,'',location.pathname+location.search);
+    ownerChecked=false; isOwner=false; if(!dlg.open) dlg.showModal(); load();
+  });
+  document.getElementById('gbClose').onclick=()=>dlg.close();
+  dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+  msg.addEventListener('input',()=>{ countEl.textContent=`${msg.value.length} / 500`; });
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const fd=new FormData(form), name=String(fd.get('name')).trim(), text=String(fd.get('msg')).trim();
+    status.className='status';
+    if(!name||!text){ status.classList.add('err'); status.textContent=t('errEmpty'); (name?msg:nameEl).focus(); return; }
+    if(!configured){ status.classList.add('err'); status.textContent=t('errClosed'); return; }
+    send.disabled=true; send.textContent=t('sending'); status.textContent='';
+    try{
+      await post({name,msg:text,website:fd.get('website')||''});
+      localStorage.setItem('nbGbName',name);
+      status.classList.add('ok'); status.textContent=t('ok');
+      msg.value=''; countEl.textContent='0 / 500'; load();
+    }catch(err){
+      status.classList.add('err'); status.textContent=err.message?t('errFail',{msg:srvMsg(err.message)}):t('errNet');
+    }finally{ send.disabled=false; send.textContent=t('send'); }
+  });
+})();
+
+/* ---------- 3D home button ---------- */
+(function home(){
+  const main=document.getElementById('homeBtn'), inLib=document.getElementById('homeBtnLib'), hero=document.getElementById('hero');
+  for(const b of [main,inLib]){
+    const box=b.querySelector('.layers');
+    for(let i=12;i>=1;i--){ const l=document.createElement('span'); l.className='layer'; l.style.transform=`translateZ(${-i*1.5}px)`; l.style.filter=`brightness(${1-i*.028})`; box.appendChild(l); }
+  }
+  const goHome=()=>glideTo(0);
+  main.addEventListener('click',()=>{ goHome(); main.blur(); });
+  inLib.addEventListener('click',()=>{ library.close(); goHome(); });
+  const update=()=>{ const on=scrollY>hero.offsetHeight*.5; main.classList.toggle('on',on); main.tabIndex=on?0:-1; main.setAttribute('aria-hidden',on?'false':'true'); };
+  addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
+  if(!reduce){
+    const mobile=matchMedia('(max-width:760px)');
+    addEventListener('pointermove',e=>{
+      for(const b of [main,inLib]){
+        const r=b.getBoundingClientRect(); if(!r.width) continue;
+        const dx=Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width/2))/(innerWidth*.5))), dy=Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height/2))/(innerHeight*.5)));
+        b.style.setProperty('--ry',`${(mobile.matches?14:0)+dx*24}deg`); b.style.setProperty('--rx',`${(mobile.matches?10:18)-dy*14}deg`);
+      }
+    },{passive:true});
+  }
+})();
+
+/* ---------- language menu ---------- */
+(function langMenu(){
+  const btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu'), cur=document.getElementById('langCur');
+  const items=[...menu.querySelectorAll('[data-lang]')];
+  const sync=()=>{ cur.textContent=LANGS[LANG].short; items.forEach(b=>b.setAttribute('aria-checked',b.dataset.lang===LANG?'true':'false')); };
+  const open=()=>{ menu.hidden=false; btn.setAttribute('aria-expanded','true'); (items.find(b=>b.dataset.lang===LANG)||items[0]).focus(); };
+  const close=(focus)=>{ menu.hidden=true; btn.setAttribute('aria-expanded','false'); if(focus) btn.focus(); };
+  btn.addEventListener('click',()=>menu.hidden?open():close());
+  items.forEach((b,i)=>{
+    b.addEventListener('click',async()=>{ close(true); if(b.dataset.lang!==LANG){ cur.textContent='…'; await setLang(b.dataset.lang); } sync(); });
+    b.addEventListener('keydown',e=>{
+      if(e.key==='ArrowDown'){ e.preventDefault(); items[(i+1)%items.length].focus(); }
+      if(e.key==='ArrowUp'){ e.preventDefault(); items[(i+items.length-1)%items.length].focus(); }
+    });
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!menu.hidden) close(true); });
+  document.addEventListener('click',e=>{ if(!menu.hidden&&!e.target.closest('#lang')) close(); });
+  sync();
+})();
+applyStatic();
+
+/* ---------- shared ---------- */
+const logoImg=new Image(); logoImg.src=LOGO;
+const ready=Promise.all([
+  new Promise(r=>{ if(logoImg.complete) r(); else logoImg.onload=r; }),
+  document.fonts.load('700 64px "LXGW WenKai TC"','九哥話室話盡天下事邏輯解碼星際溯源硬核實證角亢氐房心尾箕斗牛女虛危室壁奎婁胃昴畢觜參井鬼柳星張翼軫').catch(()=>{}),
+  document.fonts.load('800 64px Cinzel').catch(()=>{}),
+]);
+const RING='角 亢 氐 房 心 尾 箕 斗 牛 女 虛 危 室 壁 奎 婁 胃 昴 畢 觜 參 井 鬼 柳 星 張 翼 軫 ';
+const MOTTO='九哥話室話盡天下事　邏輯解碼　星際溯源　硬核實證　';
+function ringText(ctx,cx,cy,r,size,color,rot,text=RING){
+  ctx.save(); ctx.font=`700 ${size}px "LXGW WenKai TC", serif`; ctx.fillStyle=color; ctx.textAlign='center'; ctx.textBaseline='middle';
+  const chars=[...text], ws=chars.map(c=>ctx.measureText(c).width+size*.05), uw=ws.reduce((a,b)=>a+b,0);
+  const circ=2*Math.PI*r, reps=Math.max(1,Math.round(circ/uw)), sc=circ/(reps*uw); let a=rot;
+  for(let k=0;k<reps;k++) for(let j=0;j<chars.length;j++){
+    const w=ws[j]*sc, ang=a+(w/2)/r;
+    ctx.save(); ctx.translate(cx+Math.cos(ang)*r, cy+Math.sin(ang)*r); ctx.rotate(ang+Math.PI/2); ctx.fillText(chars[j],0,0); ctx.restore();
+    a+=w/r;
+  }
+  ctx.restore();
+}
+function drawLogo(ctx,cx,cy,r){
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.clip();
+  const s=2.15*r; ctx.drawImage(logoImg,cx-s/2,cy-s*.44,s,s); ctx.restore();
+}
+/* 青銅鏡：外圈銅環＋銘文＋鏡心肖像 */
+function drawMirror(ctx,cx,cy,r){
+  const R=r*1.22;
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,.55)'; ctx.shadowBlur=r*.3; ctx.shadowOffsetY=r*.06;
+  const g=ctx.createRadialGradient(cx-R*.35,cy-R*.4,R*.1,cx,cy,R);
+  g.addColorStop(0,'#E9C77A'); g.addColorStop(.45,'#B8893A'); g.addColorStop(.85,'#6B4A1C'); g.addColorStop(1,'#3D2A10');
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+  ctx.save(); ctx.strokeStyle='rgba(42,26,8,.75)'; ctx.lineWidth=Math.max(1.5,r*.012);
+  for(const k of [.995,1.165,1.205]){ ctx.beginPath(); ctx.arc(cx,cy,r*k,0,Math.PI*2); ctx.stroke(); }
+  for(let i=0;i<64;i++){ const a=i/64*Math.PI*2; ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*r*1.17,cy+Math.sin(a)*r*1.17); ctx.lineTo(cx+Math.cos(a)*r*1.2,cy+Math.sin(a)*r*1.2); ctx.stroke(); }
+  ctx.restore();
+  ringText(ctx,cx,cy,r*1.083,r*.105,'rgba(42,24,6,.9)',-Math.PI/2,MOTTO);
+  drawLogo(ctx,cx,cy,r*.98);
+  const sh=ctx.createRadialGradient(cx-r*.5,cy-r*.6,0,cx,cy,r);
+  sh.addColorStop(0,'rgba(255,240,200,.18)'); sh.addColorStop(.5,'rgba(255,240,200,0)');
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,r*.98,0,Math.PI*2); ctx.clip(); ctx.fillStyle=sh; ctx.fillRect(cx-r,cy-r,2*r,2*r); ctx.restore();
+}
+/* ---------- hero headline decode ---------- */
+function decodeIn(el){
+  if(reduce||!el) return;
+  const html=el.innerHTML, parts=html.split(/(<br\s*\/?>)/i), GLY='甲乙丙丁戊己庚辛壬癸子丑寅卯辰巳午未申酉戌亥☰☱☲☳☴☵☶☷';
+  const chars=parts.map(x=>/^<br/i.test(x)?null:[...x]); const total=chars.reduce((a,c)=>a+(c?c.length:0),0);
+  const t0=performance.now(), dur=1500; el.setAttribute('aria-label',el.textContent);
+  (function frame(now){
+    const k=Math.min(1,(now-t0)/dur)*(total+4); let idx=0;
+    el.innerHTML=parts.map((x,pi)=>chars[pi]?chars[pi].map(ch=>{ const i=idx++; if(ch===' '||i<k-4) return ch; if(i<k) return GLY[(Math.random()*GLY.length)|0]; return `<span style="opacity:0">${ch}</span>`; }).join(''):x).join('');
+    if(k<total+4) requestAnimationFrame(frame); else { el.innerHTML=html; el.removeAttribute('aria-label'); }
+  })(t0);
+}
+ready.then(()=>decodeIn(document.querySelector('.hero h1')));
+let glOK=true;
+try{ const t=document.createElement('canvas'); glOK=!!(t.getContext('webgl2')||t.getContext('webgl')); }catch(e){ glOK=false; }
+
+/* ======================================================
+   HERO — ripple water simulation
+   ====================================================== */
+const VS=`varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }`;
+const SIM=`precision highp float;
+uniform sampler2D uPrev; uniform vec2 uTexel; uniform vec4 uDrop; uniform float uAspect; varying vec2 vUv;
+void main(){
+  vec2 c=texture2D(uPrev,vUv).rg;
+  float s=texture2D(uPrev,vUv+vec2(uTexel.x,0.)).r+texture2D(uPrev,vUv-vec2(uTexel.x,0.)).r
+         +texture2D(uPrev,vUv+vec2(0.,uTexel.y)).r+texture2D(uPrev,vUv-vec2(0.,uTexel.y)).r;
+  float h=(s*.5-c.g)*.986;
+  vec2 d=vUv-uDrop.xy; d.x*=uAspect;
+  h+=uDrop.z*(1.-smoothstep(0.,uDrop.w,length(d)));
+  gl_FragColor=vec4(h,c.r,0.,1.);
+}`;
+const DISP=`precision highp float;
+uniform sampler2D uTex,uH; uniform vec2 uTexel; varying vec2 vUv;
+void main(){
+  float l=texture2D(uH,vUv-vec2(uTexel.x,0.)).r, r=texture2D(uH,vUv+vec2(uTexel.x,0.)).r;
+  float d=texture2D(uH,vUv-vec2(0.,uTexel.y)).r, u=texture2D(uH,vUv+vec2(0.,uTexel.y)).r;
+  vec2 g=vec2(r-l,u-d);
+  vec3 col=texture2D(uTex,vUv-g*.05).rgb;
+  vec3 n=normalize(vec3(-g*9.,1.));
+  vec3 rf=reflect(vec3(0.,0.,-1.),n);
+  vec3 env=mix(vec3(.42,.55,.56),vec3(.97,.9,.72),smoothstep(-.25,.55,rf.y+rf.x*.3));
+  float slope=clamp(length(g)*16.,0.,.82);
+  col=mix(col,env,slope);
+  vec3 L=normalize(vec3(-.45,.55,.7));
+  float sp=pow(max(dot(reflect(-L,n),vec3(0.,0.,1.)),0.),52.);
+  col*=1.+(g.x-g.y)*1.8;
+  col+=sp*vec3(1.,.95,.84)*.95;
+  gl_FragColor=vec4(col,1.);
+}`;
+
+function initHero(){
+  const hero=document.getElementById('hero'), canvas=document.getElementById('heroGL');
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1), scene=new THREE.Scene();
+  const quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2)); scene.add(quad);
+  const simMat=new THREE.ShaderMaterial({vertexShader:VS,fragmentShader:SIM,uniforms:{uPrev:{value:null},uTexel:{value:new THREE.Vector2()},uDrop:{value:new THREE.Vector4()},uAspect:{value:1}}});
+  const dispMat=new THREE.ShaderMaterial({vertexShader:VS,fragmentShader:DISP,uniforms:{uTex:{value:null},uH:{value:null},uTexel:{value:new THREE.Vector2()}}});
+  const bg=document.createElement('canvas'), bctx=bg.getContext('2d');
+  const bgTex=new THREE.CanvasTexture(bg); bgTex.minFilter=THREE.LinearFilter; bgTex.generateMipmaps=false;
+  dispMat.uniforms.uTex.value=bgTex;
+  let rtA,rtB,W=1,H=1,center={x:.5,y:.5};
+  const mk=(w,h)=>new THREE.WebGLRenderTarget(w,h,{type:THREE.HalfFloatType,format:THREE.RGBAFormat,minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,depthBuffer:false});
+
+  function drawBG(){
+    const dpr=Math.min(devicePixelRatio,2), w=bg.width=Math.min(2560,Math.round(W*dpr)), h=bg.height=Math.round(w*H/W);
+    const mobile=W<760, cx=w*(mobile?.5:.66), cy=h*(mobile?.34:.47);
+    center={x:cx/w,y:1-cy/h};
+    const gr=bctx.createRadialGradient(cx,cy,0,cx,cy,Math.hypot(w,h)*.75);
+    gr.addColorStop(0,'#14504F'); gr.addColorStop(.45,'#0A3236'); gr.addColorStop(1,'#021014');
+    bctx.fillStyle=gr; bctx.fillRect(0,0,w,h);
+    const r0=Math.min(w,h)*(mobile?.17:.19), unit=Math.max(1,w/1400);
+    /* 星點 */
+    let seed=7; const R=()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+    for(let i=0;i<Math.round(w*h/4200);i++){ const x=R()*w, y=R()*h, s=R(); bctx.fillStyle=`rgba(239,230,208,${.15+s*.55})`; bctx.beginPath(); bctx.arc(x,y,(s*s*1.6+.3)*unit,0,Math.PI*2); bctx.fill(); }
+    /* 星座連線 */
+    bctx.strokeStyle='rgba(140,201,184,.28)'; bctx.lineWidth=unit;
+    for(let c=0;c<14;c++){ let x=R()*w, y=R()*h; bctx.beginPath(); bctx.moveTo(x,y); for(let k=0;k<4;k++){ x+=(R()-.5)*w*.09; y+=(R()-.5)*h*.12; bctx.lineTo(x,y); bctx.fillStyle='rgba(239,230,208,.8)'; bctx.fillRect(x-1.5*unit,y-1.5*unit,3*unit,3*unit);} bctx.stroke(); }
+    /* 二十八宿星盤 */
+    const rings=[r0*1.75,r0*2.25,r0*2.9,r0*3.6];
+    bctx.strokeStyle='rgba(217,174,82,.35)'; bctx.lineWidth=1.2*unit;
+    rings.forEach(rr=>{ bctx.beginPath(); bctx.arc(cx,cy,rr,0,Math.PI*2); bctx.stroke(); });
+    for(let i=0;i<28;i++){ const a=i/28*Math.PI*2-Math.PI/2; bctx.beginPath(); bctx.moveTo(cx+Math.cos(a)*rings[0],cy+Math.sin(a)*rings[0]); bctx.lineTo(cx+Math.cos(a)*rings[2],cy+Math.sin(a)*rings[2]); bctx.stroke(); }
+    for(let i=0;i<360;i+=2){ const a=i/180*Math.PI, L=i%10?r0*.05:r0*.1; bctx.beginPath(); bctx.moveTo(cx+Math.cos(a)*rings[3],cy+Math.sin(a)*rings[3]); bctx.lineTo(cx+Math.cos(a)*(rings[3]-L),cy+Math.sin(a)*(rings[3]-L)); bctx.stroke(); }
+    ringText(bctx,cx,cy,(rings[0]+rings[1])/2,r0*.2,'rgba(217,174,82,.85)',-Math.PI/2-Math.PI/28,RING);
+    ringText(bctx,cx,cy,(rings[1]+rings[2])/2,r0*.13,'rgba(140,201,184,.55)',-Math.PI/2,'甲 乙 丙 丁 戊 己 庚 辛 壬 癸 子 丑 寅 卯 辰 巳 午 未 申 酉 戌 亥 ');
+    if(!mobile){
+      const sc=bctx.createLinearGradient(0,0,w*.56,0);
+      sc.addColorStop(0,'rgba(2,16,20,.85)'); sc.addColorStop(1,'rgba(2,16,20,0)');
+      bctx.fillStyle=sc; bctx.fillRect(0,0,w*.56,h);
+    }else{
+      const sc=bctx.createLinearGradient(0,h,0,h*.42);
+      sc.addColorStop(0,'rgba(2,16,20,.92)'); sc.addColorStop(1,'rgba(2,16,20,0)');
+      bctx.fillStyle=sc; bctx.fillRect(0,h*.42,w,h*.58);
+    }
+    drawMirror(bctx,cx,cy,r0);
+    bgTex.needsUpdate=true;
+  }
+  function resize(){
+    W=hero.clientWidth||innerWidth||1280; H=hero.clientHeight||innerHeight||720; renderer.setSize(W,H,false);
+    const sw=Math.min(640,Math.round(W/2.5)), sh=Math.round(sw*H/W);
+    rtA&&rtA.dispose(); rtB&&rtB.dispose(); rtA=mk(sw,sh); rtB=mk(sw,sh);
+    renderer.setClearColor(0x000000,0);
+    for(const rt of [rtA,rtB]){ renderer.setRenderTarget(rt); renderer.clear(); }
+    renderer.setRenderTarget(null);
+    simMat.uniforms.uTexel.value.set(1/sw,1/sh); dispMat.uniforms.uTexel.value.set(1/sw,1/sh);
+    simMat.uniforms.uAspect.value=W/H;
+    drawBG();
+  }
+  const drops=[]; let last=null;
+  function addPointer(x,y){
+    const r=canvas.getBoundingClientRect(), u=(x-r.left)/r.width, v=1-(y-r.top)/r.height;
+    if(last){ const dx=(u-last.u)*W/H, dy=v-last.v, dist=Math.hypot(dx,dy), n=Math.min(6,Math.ceil(dist/.012));
+      for(let i=1;i<=n;i++) drops.push([last.u+(u-last.u)*i/n, last.v+(v-last.v)*i/n, Math.min(.09,.025+dist*.9), .018]); }
+    last={u,v};
+  }
+  hero.addEventListener('pointermove',e=>addPointer(e.clientX,e.clientY));
+  hero.addEventListener('pointerleave',()=>{last=null;});
+  hero.addEventListener('pointerdown',e=>{ const r=canvas.getBoundingClientRect(); drops.push([(e.clientX-r.left)/r.width,1-(e.clientY-r.top)/r.height,.35,.035]); });
+  function step(d){
+    simMat.uniforms.uPrev.value=rtA.texture;
+    simMat.uniforms.uDrop.value.set(d?d[0]:0,d?d[1]:0,d?d[2]:0,d?d[3]:.01);
+    quad.material=simMat; renderer.setRenderTarget(rtB); renderer.render(scene,cam);
+    [rtA,rtB]=[rtB,rtA];
+  }
+  let visible=true;
+  new IntersectionObserver(([e])=>{visible=e.isIntersecting;}).observe(hero);
+  addEventListener('resize',resize);
+  resize();
+  if(!reduce) setTimeout(()=>drops.push([center.x-.13,center.y-.3,.24,.035]),1700);
+  return function frame(){
+    if(!visible) return;
+    const batch=drops.splice(0,8);
+    if(batch.length){ batch.forEach(d=>step(d)); } else step(null);
+    step(null);
+    quad.material=dispMat; dispMat.uniforms.uH.value=rtA.texture;
+    renderer.setRenderTarget(null); renderer.render(scene,cam);
+  };
+}
+
+/* ======================================================
+   JOURNEY — one continuous camera through 10 stations
+   ====================================================== */
+const V3=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
+const _o=new THREE.Object3D();
+function face(p,t){ _o.position.copy(p); _o.up.set(0,1,0); _o.lookAt(t); return _o.quaternion.clone(); }
+const SZ=v=>v.short?[1.35,2.4]:[3.2,1.8];
+function rng(seed){ return ()=>{ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+const FORMS={
+
+  army(it){ const cols=4, gx=2.7, gz=3.6, rows=Math.ceil(it.length/cols), D=rows*gz;
+    return {slots:it.map((v,i)=>{ const c=i%cols, r=Math.floor(i/cols), p=V3((c-(cols-1)/2)*gx,1.8,-r*gz); return {p,q:face(p,V3(p.x*.5,9,p.z+16)), size:v.short?[1.5,2.66]:[2.5,1.4]}; }),
+      pivot:V3(), a:[V3(0,8.5,12),V3(0,-2.5,-6)], b:[V3(0,6.5,-D+7),V3(0,-2.5,-D-6)], depth:D,
+      deco(rig){ const m=new THREE.LineBasicMaterial({color:0xD9AE52,transparent:true,opacity:.35});
+        for(let c=0;c<=cols;c++){ const x=(c-cols/2)*gx; rig.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([V3(x,.2,2),V3(x,.2,-D)]),m)); } } }; },
+  tree(it){ const piv=V3(0,0,-6), tips=[], rest=[];
+    it.forEach((v,i)=>(i<9?tips:rest).push(i));
+    const slots=new Array(it.length);
+    tips.forEach((idx,k)=>{ const tier=Math.floor(k/3), a=(k%3)/3*Math.PI*2+tier*.7, y=-3.2+tier*3.6, r=5.4-tier*.9;
+      const p=piv.clone().add(V3(Math.cos(a)*r,y+1.1,Math.sin(a)*r)); slots[idx]={p,q:face(p,piv.clone().add(V3(Math.cos(a)*r*2.2,y+1.1,Math.sin(a)*r*2.2))),size:it[idx].short?[1.3,2.3]:[2.4,1.35]}; });
+    rest.forEach((idx,k)=>{ const a=k*1.25, y=-5.2+k*(10.5/Math.max(1,rest.length)), r=1.55;
+      const p=piv.clone().add(V3(Math.cos(a)*r,y,Math.sin(a)*r)); slots[idx]={p,q:face(p,piv.clone().add(V3(Math.cos(a)*r*3,y,Math.sin(a)*r*3))),size:it[idx].short?[1.0,1.78]:[1.8,1.01]}; });
+    return {slots, pivot:piv, spin:['y',.08], a:[V3(0,1,18),V3(0,.5,-6)], b:[V3(-13,4,5),V3(0,.5,-6)], depth:14,
+      deco(rig){ const m=new THREE.MeshBasicMaterial({color:0xB8893A});
+        const trunk=new THREE.Mesh(new THREE.CylinderGeometry(.16,.32,13,10),m); trunk.position.y=.6; rig.add(trunk);
+        const lm=new THREE.LineBasicMaterial({color:0xD9AE52,transparent:true,opacity:.7});
+        for(let k=0;k<9;k++){ const tier=Math.floor(k/3), a=(k%3)/3*Math.PI*2+tier*.7, y=-3.2+tier*3.6, r=5.4-tier*.9;
+          const pts=[]; for(let s2=0;s2<=12;s2++){ const t=s2/12; pts.push(V3(Math.cos(a)*r*t, y+1.1+Math.sin(t*Math.PI)*1.2-(1-t)*.6, Math.sin(a)*r*t)); }
+          rig.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),lm)); } } }; },
+  kunlun(it){ const piv=V3(0,0,-8), n=it.length;
+    return {slots:it.map((v,i)=>{ const t=n>1?i/(n-1):0, y=-6+t*13, r=8.2*(1-t)+1.3, a=i*.66, p=piv.clone().add(V3(Math.cos(a)*r,y,Math.sin(a)*r));
+      return {p,q:face(p,piv.clone().add(V3(Math.cos(a)*r*2.2,y+1,Math.sin(a)*r*2.2))), size:v.short?[1.35,2.4]:[2.5,1.4]}; }),
+      pivot:piv, spin:['y',.06], a:[V3(0,-2.5,17),V3(0,-1,-8)], b:[V3(4,9,10),V3(0,5,-8)], depth:18,
+      deco(rig){ const pts=[]; for(let k=0;k<=240;k++){ const t=k/240, a=t*n*.66, r=8.2*(1-t)+1.3; pts.push(V3(Math.cos(a)*r,-7.4+t*13,Math.sin(a)*r)); }
+        rig.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x8CC9B8,transparent:true,opacity:.45}))); } }; },
+  pyramid(it){ const rows=[]; let left=it.length, w=1; while(left>0){ rows.push(Math.min(w,left)); left-=w; w++; }
+    rows.reverse(); /* 底層最寬 */
+    const R=rows.length, slots=[]; let idx=0;
+    rows.forEach((cnt,r)=>{ const level=r; for(let c=0;c<cnt;c++){ const x=(c-(cnt-1)/2)*2.05, y=-2.2+level*2.75, z=-level*1.7; const p=V3(x,y,z);
+      slots.push({p,q:face(p,V3(x*.35,y+1.5,z+24)),size:it[idx].short?[1.45,2.58]:[2.3,1.29]}); idx++; } });
+    /* 由底向上排：資料順序對應底層開始 */
+    return {slots, pivot:V3(), a:[V3(0,1.5,24),V3(0,.6,-3)], b:[V3(12,5,16),V3(0,1.2,-4)], depth:8,
+      deco(rig){ const m=new THREE.LineBasicMaterial({color:0xD9AE52,transparent:true,opacity:.4});
+        rows.forEach((cnt,r)=>{ const half=cnt*2.05/2+.4, y=-2.2+r*2.75-1.55, z=-r*1.7+.2; rig.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([V3(-half,y,z),V3(half,y,z)]),m)); }); } }; },
+  orbit(it){ const piv=V3(0,0,-6), n=it.length, h=Math.ceil(n/2);
+    const ringPos=(i)=>{ const A=i<h, j=A?i:i-h, m=A?h:n-h, a=j/Math.max(1,m)*Math.PI*2, R=A?6:8.6, tilt=A?.35:-.45;
+      return V3(Math.cos(a)*R, Math.sin(a)*R*Math.sin(tilt), Math.sin(a)*R*Math.cos(tilt)); };
+    return {slots:it.map((v,i)=>{ const o=ringPos(i), p=piv.clone().add(o); return {p,q:face(p,piv.clone().add(o.clone().multiplyScalar(2))), size:v.short?[1.45,2.58]:[2.6,1.46]}; }),
+      pivot:piv, spin:['y',.13], a:[V3(0,3,17),V3(0,0,-6)], b:[V3(12,5,6),V3(0,0,-6)], depth:14,
+      deco(rig){ const planet=new THREE.Mesh(new THREE.SphereGeometry(2.4,28,18),new THREE.MeshBasicMaterial({color:0x8CC9B8,wireframe:true,transparent:true,opacity:.35})); rig.add(planet);
+        const core=new THREE.Mesh(new THREE.SphereGeometry(1.2,20,14),new THREE.MeshBasicMaterial({color:0xD9AE52,transparent:true,opacity:.5})); rig.add(core);
+        [[6,.35],[8.6,-.45]].forEach(([R,tilt])=>{ const pts=[]; for(let k=0;k<=96;k++){ const a=k/96*Math.PI*2; pts.push(V3(Math.cos(a)*R,Math.sin(a)*R*Math.sin(tilt),Math.sin(a)*R*Math.cos(tilt))); }
+          rig.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0xD9AE52,transparent:true,opacity:.45}))); }); } }; },
+  newswall(it){ const R=9, n=it.length, rowsN=n>5?2:1, per=Math.ceil(n/rowsN);
+    return {slots:it.map((v,i)=>{ const row=Math.floor(i/per), j=i%per, cnt=Math.min(per,n-row*per), a=(j-(cnt-1)/2)*.36, y=rowsN>1?(row?-.2:3.2):1.4;
+      const p=V3(Math.sin(a)*R,y,-Math.cos(a)*R); return {p,q:face(p,V3(0,y,0)), size:v.short?[1.6,2.84]:[2.8,1.58]}; }),
+      pivot:V3(), a:[V3(0,.3,5),V3(0,0,-8)], b:[V3(0,.3,1.5),V3(2.5,0,-8)], depth:10}; },
+  helix(it){ const R=4.8, st=1.15, D=it.length*st;
+    return {slots:it.map((v,i)=>{ const a=i*.72+1.3, z=-i*st, p=V3(Math.cos(a)*R,Math.sin(a)*R*.85,z); return {p,q:face(p,V3(0,0,z+7))}; }),
+      pivot:V3(), spin:['z',.04], a:[V3(0,0,10),V3(0,0,-8)], b:[V3(0,0,-D+7),V3(0,0,-D-12)], depth:D}; },
+  cabin(it){ const st=3.7, D=Math.ceil(it.length/4)*st;
+    return {slots:it.map((v,i)=>{ const side=i%2?1:-1, row=Math.floor(i/2)%2, col=Math.floor(i/4), p=V3(side*4.5,row?1.5:-1.45,-col*st); return {p,q:face(p,V3(0,p.y*.4,p.z+6))}; }),
+      pivot:V3(), a:[V3(0,.2,9),V3(0,0,-8)], b:[V3(0,.2,-D+5),V3(0,0,-D-14)], depth:D}; },
+  grid(it){ const cols=6, rows=Math.ceil(it.length/cols);
+    return {slots:it.map((v,i)=>{ const c=i%cols, r=Math.floor(i/cols); return {p:V3((c-2.5)*2.5,((rows-1)/2-r)*3.05,0), q:new THREE.Quaternion(), size:v.short?[1.55,2.75]:[2.3,1.3]}; }),
+      pivot:V3(), a:[V3(0,0,23),V3(0,0,0)], b:[V3(10,-2,14),V3(0,0,-1)], depth:4}; },
+  tri(it){ const per=Math.ceil(it.length/3);
+    return {slots:it.map((v,i)=>{ const g=i%3, j=Math.floor(i/3), th=-Math.PI/2+g*Math.PI*2/3, base=V3(Math.cos(th)*8,0,Math.sin(th)*6-2);
+      const y=((per-1)/2-j)*2.95, p=base.clone().add(V3(Math.cos(j*1.1)*1.3,y,Math.sin(j*1.1)*1.3)); return {p,q:face(p,V3(p.x*.4,y*.6,30)), size:v.short?[1.55,2.75]:[2.9,1.63]}; }),
+      pivot:V3(), a:[V3(0,2,21),V3(0,0,-2)], b:[V3(-12,6,12),V3(0,0,-2)], depth:10}; },
+  scroll(it){ const sizes=it.map(v=>v.short?[1.35,2.4]:[2.6,1.46]); let x=0; const xs=sizes.map((s,i)=>{ if(i) x+=sizes[i-1][0]/2+.4+s[0]/2; return x; }); const L=x;
+    return {slots:it.map((v,i)=>{ const px=xs[i]-L/2, p=V3(px,Math.sin(i*.55)*.45,-(px*px)/110); return {p,q:face(p,V3(px*.55,0,22)), size:sizes[i]}; }),
+      pivot:V3(), a:[V3(-L/2+7,.6,11.5),V3(-L/2+7,0,-1)], b:[V3(L/2-7,.6,11.5),V3(L/2-7,0,-1)], depth:10}; },
+  sphere(it){ const R=7.4, piv=V3(0,0,-8), n=it.length, ga=Math.PI*(3-Math.sqrt(5));
+    return {slots:it.map((v,i)=>{ const y=1-(i+.5)/n*2, r=Math.sqrt(1-y*y), dir=V3(Math.cos(ga*i)*r,y,Math.sin(ga*i)*r), p=piv.clone().addScaledVector(dir,R); return {p,q:face(p,piv.clone().addScaledVector(dir,R*2)), size:v.short?[1.3,2.3]:[2.6,1.46]}; }),
+      pivot:piv, spin:['y',.09], a:[V3(0,0,15),V3(0,0,-8)], b:[V3(-14,5,2),V3(0,0,-8)], depth:17}; },
+  rings(it){ const R=6.4, h=Math.ceil(it.length/2);
+    return {slots:it.map((v,i)=>{ const A=i<h, j=A?i:i-h, n=A?h:it.length-h, a=j/n*Math.PI*2;
+      const p=A?V3(-3+R*Math.cos(a),R*Math.sin(a),-4):V3(3+R*Math.cos(a),R*Math.sin(a)*.5,-4+R*Math.sin(a)*.86);
+      return {p,q:face(p,V3(p.x*.25,p.y*.25,30)), size:v.short?[1.4,2.5]:[2.4,1.35]}; }),
+      pivot:V3(), a:[V3(0,1,18),V3(0,0,-4)], b:[V3(10,5,11),V3(0,0,-4)], depth:10}; },
+  conveyor(it){ const g=3.1, n=it.length;
+    return {slots:it.map((v,i)=>{ const p=V3((i-(n-1)/2)*g,0,0); return {p,q:face(p,V3(p.x*.4,0,20)), size:v.short?[1.95,3.45]:[3.4,1.9]}; }),
+      pivot:V3(), belt:true, a:[V3(-7,2.2,9.5),V3(0,-.3,0)], b:[V3(7,1.6,8.5),V3(.5,-.3,0)], depth:4}; },
+  cloud(it){ const R=rng(7);
+    return {slots:it.map((v,i)=>{ let x=(R()*2-1)*11, y=(R()*2-1)*5.5; const z=-(i/it.length)*26-R()*2; if(Math.abs(x)<3.2&&Math.abs(y)<2.4) x=Math.sign(x||1)*(3.2+R()*2.5); const p=V3(x,y,z); return {p,q:face(p,V3(x*.3,y*.3,z+16))}; }),
+      pivot:V3(), a:[V3(0,0,11),V3(0,0,-10)], b:[V3(0,0,-22),V3(0,0,-45)], depth:28}; },
+  carousel(it){ const R=6.6, piv=V3(0,0,-6), n=it.length;
+    return {slots:it.map((v,i)=>{ const a=i/n*Math.PI*2, p=piv.clone().add(V3(Math.sin(a)*R,i%2?.7:-.7,Math.cos(a)*R)); return {p,q:face(p,piv.clone().add(V3(Math.sin(a)*R*2,p.y,Math.cos(a)*R*2)))}; }),
+      pivot:piv, spin:['y',.16], a:[V3(0,2.5,10.5),V3(0,0,-6)], b:[V3(8,4,4),V3(0,0,-6)], depth:14}; },
+  galaxy(it){ const piv=V3(0,0,-10), m=Math.ceil(it.length/2);
+    return {slots:it.map((v,i)=>{ const arm=i%2, t=Math.floor(i/2)/m, r=2.6+t*12.5, ang=arm*Math.PI+t*3.8, p=piv.clone().add(V3(r*Math.cos(ang),Math.sin(i*1.7)*.7,r*Math.sin(ang))); return {p,q:face(p,V3(p.x*.15,30,p.z+9)), size:v.short?[1.5,2.65]:[3,1.69]}; }),
+      pivot:piv, spin:['y',.05], a:[V3(0,24,6),V3(0,0,-11)], b:[V3(0,15,-1),V3(0,0,-13)], depth:24}; },
+};
+
+function initJourney(){
+  const sec=document.getElementById('journey'), stage=document.getElementById('stage'), canvas=document.getElementById('jGL');
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
+  const NAVY=0x06232A;
+  const scene=new THREE.Scene(); scene.background=new THREE.Color(NAVY); scene.fog=new THREE.Fog(NAVY,24,92);
+  const camera=new THREE.PerspectiveCamera(52,1,.1,500);
+  const loader=new THREE.TextureLoader(); loader.setCrossOrigin('anonymous');
+  const geo=new THREE.PlaneGeometry(1,1);
+
+  /* logo disc + ring texture */
+  const lc=document.createElement('canvas'); lc.width=lc.height=1024; const lx=lc.getContext('2d');
+  const ringC=document.createElement('canvas'); ringC.width=ringC.height=1024; const rx=ringC.getContext('2d');
+  const logoTex=new THREE.CanvasTexture(lc), ringTex=new THREE.CanvasTexture(ringC);
+  logoTex.colorSpace=ringTex.colorSpace=THREE.SRGBColorSpace;
+  ready.then(()=>{ drawMirror(lx,512,512,410); logoTex.needsUpdate=true;
+    ringText(rx,512,512,470,46,'#D9AE52',0,RING); ringText(rx,512,512,405,30,'rgba(140,201,184,.8)',0.3,'甲 乙 丙 丁 戊 己 庚 辛 壬 癸 子 丑 寅 卯 辰 巳 午 未 申 酉 戌 亥 '); ringTex.needsUpdate=true; });
+  function logoGroup(scale){
+    const g=new THREE.Group();
+    const disc=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:logoTex,transparent:true,side:THREE.DoubleSide}));
+    disc.scale.set(8*scale,8*scale,1);
+    const ring=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:ringTex,transparent:true,side:THREE.DoubleSide,depthWrite:false}));
+    ring.scale.set(19*scale,19*scale,1); ring.position.z=-.05;
+    g.add(ring,disc); g.userData={disc,ring}; return g;
+  }
+
+  /* stations */
+  const cards=[], keys=[], tgts=[];
+  const intro=logoGroup(1); scene.add(intro);
+  keys.push(V3(0,0,12),V3(0,0,-9)); tgts.push(V3(0,0,0),V3(0,0,-40));
+  let C=V3(0,0,-40); const lat=[-14,15,-13,14,-12,0];
+  CATS.forEach((c,si)=>{
+    const F=FORMS[c.form](c.items);
+    const grp=new THREE.Group(); grp.position.copy(C); scene.add(grp);
+    const rig=new THREE.Group(); rig.position.copy(F.pivot); grp.add(rig);
+    if(F.deco) F.deco(rig);
+    const R=rng(si*97+3);
+    c.items.forEach((v,j)=>{
+      const sl=F.slots[j], [w,h]=sl.size||SZ(v);
+      const mat=new THREE.MeshBasicMaterial({color:0x1C5A58,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:true});
+      const mesh=new THREE.Mesh(geo,mat);
+      const frameM=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:0xD9AE52,transparent:true,opacity:0,side:THREE.DoubleSide}));
+      frameM.scale.set(1+.2/w,1+.2/h,1); frameM.position.z=-.02; mesh.add(frameM);
+      const fp=sl.p.clone().sub(F.pivot);
+      let dir=V3(fp.x,fp.y,0); if(dir.lengthSq()<.01) dir.set(R()-.5,R()-.5,0); dir.normalize(); dir.z=(R()-.5)*.8; dir.normalize();
+      const sp=fp.clone().addScaledVector(dir,20+R()*16);
+      const sq=new THREE.Quaternion().setFromEuler(new THREE.Euler(R()*6,R()*6,R()*6));
+      mesh.userData={v,w,h,fp,fq:sl.q,sp,sq,j,n:c.items.length,si,frame:frameM,hs:1,loaded:false};
+      rig.add(mesh); cards.push(mesh);
+    });
+    if(F.belt){ const bc=document.createElement('canvas'); bc.width=256; bc.height=64; const bx=bc.getContext('2d');
+      bx.fillStyle='#0E2780'; bx.fillRect(0,0,256,64); bx.fillStyle='#D9AE52';
+      for(let x=-64;x<256;x+=64){ bx.beginPath(); bx.moveTo(x,0); bx.lineTo(x+24,0); bx.lineTo(x+56,32); bx.lineTo(x+24,64); bx.lineTo(x,64); bx.lineTo(x+32,32); bx.closePath(); bx.fill(); }
+      const bt=new THREE.CanvasTexture(bc); bt.colorSpace=THREE.SRGBColorSpace; bt.wrapS=THREE.RepeatWrapping; bt.repeat.set(9,1);
+      const belt=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:bt,transparent:true,opacity:.9}));
+      belt.scale.set(c.items.length*3.1+14,2.4,1); belt.rotation.x=-Math.PI/2; belt.position.set(0,-1.95,.2); grp.add(belt); c.belt=bt; }
+    c.grp=grp; c.rig=rig; c.spin=F.spin;
+    keys.push(C.clone().add(F.a[0]),C.clone().add(F.b[0])); tgts.push(C.clone().add(F.a[1]),C.clone().add(F.b[1]));
+    C=C.clone().add(V3(lat[si],(si%3-1)*3,-(F.depth+44)));
+  });
+  const outro=logoGroup(1.1); outro.position.copy(C); scene.add(outro);
+  keys.push(C.clone().add(V3(0,-2,25))); tgts.push(C.clone().add(V3(0,-4.5,0)));
+  const N=keys.length;
+  const posCurve=new THREE.CatmullRomCurve3(keys,false,'centripetal',.5), tgtCurve=new THREE.CatmullRomCurve3(tgts,false,'centripetal',.5);
+
+  /* flight path + stars */
+  const pathPts=posCurve.getPoints(900).map(p=>p.clone().add(V3(0,-3.4,0)));
+  const pathLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pathPts),new THREE.LineDashedMaterial({color:0xD9AE52,dashSize:.9,gapSize:1.4,transparent:true,opacity:.45}));
+  pathLine.computeLineDistances(); scene.add(pathLine);
+  const SR=rng(11), starN=2200, sp=new Float32Array(starN*3);
+  for(let i=0;i<starN;i++){ sp[i*3]=(SR()*2-1)*70; sp[i*3+1]=(SR()*2-1)*40; sp[i*3+2]=30+SR()*(C.z-70); }
+  const sg=new THREE.BufferGeometry(); sg.setAttribute('position',new THREE.BufferAttribute(sp,3));
+  scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xEBD9A6,size:.13,transparent:true,opacity:.7})));
+
+  /* DOM: labels + rail */
+  const labelsEl=document.getElementById('labels'), rail=document.getElementById('rail'), prog=document.getElementById('prog');
+  const mkLabel=(cls,html)=>{ const d=document.createElement('div'); d.className='label '+cls; d.innerHTML=html; labelsEl.appendChild(d); return d; };
+  const introL=mkLabel('intro','');
+  CATS.forEach((c,i)=>{
+    c.label=mkLabel('','');
+    const b=document.createElement('button'); b.type='button'; b.onclick=()=>goTo(2+2*i+.5); rail.appendChild(b); c.btn=b;
+  });
+  const outroL=mkLabel('outro','');
+  function fillLabels(){
+    introL.innerHTML=`<p>${t('intro',{total:RAW.length})}</p>`;
+    CATS.forEach(c=>{
+      const n=c.items.length, sh=c.items.filter(v=>v.short).length;
+      c.label.classList.toggle('vertical',!!c.vertical&&LANG!=='en'); c.label.classList.toggle('long',!!c.long&&LANG!=='en');
+      c.label.innerHTML=`<h2></h2><div><p></p><span class="count"></span></div>`;
+      const h=c.label.querySelector('h2'); h.textContent=catName(c); const sm=document.createElement('small'); sm.textContent=catSub(c); h.appendChild(sm);
+      c.label.querySelector('p').textContent=catDesc(c);
+      c.label.querySelector('.count').textContent=t('countBase',{n})+(sh&&sh<n?t('countSome',{sh}):sh?t('countAll'):'')+t('countTail');
+      c.btn.textContent=catName(c);
+    });
+    outroL.innerHTML=`<h2>${t('outroH2')}</h2><p>${t('outroP')}</p><a class="btn solid" href="https://www.youtube.com/@BrotherNineHC?sub_confirmation=1" target="_blank" rel="noopener">${t('subscribe')}</a>`;
+  }
+  fillLabels(); onLang.push(fillLabels);
+
+  const vh=()=>stage.clientHeight||innerHeight;
+  function layout(){ sec.style.height=`${(N-1)*62+100}vh`; }
+  layout();
+  function goTo(k){ const top=sec.offsetTop, span=sec.offsetHeight-vh(); glideTo(top+span*k/(N-1)); }
+  const progress=()=>{ const r=sec.getBoundingClientRect(), span=r.height-vh(); return Math.min(1,Math.max(0,-r.top/span)); };
+
+  /* picking */
+  const ray=new THREE.Raycaster(), ndc=new THREE.Vector2(), tip=document.getElementById('tip');
+  let hovered=null, pointer=null, down=null;
+  canvas.style.touchAction='pan-y';
+  stage.addEventListener('pointermove',e=>{ pointer={x:e.clientX,y:e.clientY}; });
+  stage.addEventListener('pointerleave',()=>{ pointer=null; });
+  stage.addEventListener('pointerdown',e=>{ down={x:e.clientX,y:e.clientY,t:performance.now()}; pointer={x:e.clientX,y:e.clientY}; });
+  stage.addEventListener('pointerup',e=>{
+    if(!down) return; const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y); down=null;
+    if(moved>8) return; pointer={x:e.clientX,y:e.clientY}; pick();
+    if(hovered) openVideo(hovered.userData.v);
+  });
+  function pick(){
+    if(!pointer){ hovered=null; return; }
+    const r=canvas.getBoundingClientRect(); ndc.set((pointer.x-r.left)/r.width*2-1,-(pointer.y-r.top)/r.height*2+1);
+    ray.setFromCamera(ndc,camera);
+    const live=cards.filter(m=>m.visible&&m.material.opacity>.7);
+    const hit=ray.intersectObjects(live,false)[0];
+    hovered=hit?hit.object:null;
+  }
+
+  function resize(){
+    const w=stage.clientWidth||innerWidth, h=stage.clientHeight||innerHeight; renderer.setSize(w,h,false);
+    camera.aspect=w/h; camera.fov=w<760?66:52; camera.updateProjectionMatrix(); layout();
+  }
+  addEventListener('resize',resize); resize();
+
+  let visible=false; new IntersectionObserver(([e])=>{visible=e.isIntersecting;}).observe(sec);
+  const camPos=posCurve.getPoint(0), camTgt=tgtCurve.getPoint(0);
+  const ss=(a,b,x)=>{ const t=Math.min(1,Math.max(0,(x-a)/(b-a))); return t*t*(3-2*t); };
+  const eo=t=>1-Math.pow(1-t,3);
+  const clock=new THREE.Clock(); let time=0;
+
+  function loadCard(m){
+    const u=m.userData; if(!u.v||u.loaded) return; u.loaded=true;
+    const apply=(tex,crop)=>{ tex.colorSpace=THREE.SRGBColorSpace; tex.anisotropy=4;
+      if(crop){ tex.repeat.set(.42,1); tex.offset.set(.29,0); }
+      m.material.map=tex; m.material.color.set(0xffffff); m.material.needsUpdate=true; };
+    loader.load(thumb(u.v),t=>apply(t,false),undefined,()=>{ loader.load(`https://i.ytimg.com/vi/${u.v.id}/hqdefault.jpg`,t=>apply(t,u.v.short)); });
+  }
+
+  return function frame(){
+    const dt=Math.min(.05,clock.getDelta()); if(!reduce) time+=dt;
+    if(!visible) return;
+    const p=progress(), k=p*(N-1);
+    prog.style.width=(p*100)+'%';
+    const tp=posCurve.getPoint(p), tt=tgtCurve.getPoint(p);
+    const damp=reduce?1:1-Math.pow(.0015,dt);
+    camPos.lerp(tp,damp); camTgt.lerp(tt,damp);
+    camera.position.copy(camPos); camera.lookAt(camTgt);
+
+    /* logos */
+    const dI=camera.position.z; intro.userData.disc.material.opacity=ss(.5,5,dI); intro.userData.ring.material.opacity=ss(.5,6,dI);
+    intro.visible=dI>.4; intro.userData.ring.rotation.z=time*.12; outro.userData.ring.rotation.z=-time*.1;
+
+    /* stations */
+    let active=-1, best=.3;
+    CATS.forEach((c,i)=>{
+      const A=2+2*i, B=A+1;
+      const pres=ss(A-.55,A-.1,k)*(1-ss(B+.1,B+.5,k));
+      c.label.classList.toggle('on',pres>.5);
+      if(pres>best){best=pres;active=i;}
+      const near=k>A-3.2&&k<B+2;
+      c.grp.visible=k>A-2&&k<B+1.6;
+      if(near) c.rig.children.forEach(loadCard);
+      if(c.spin&&c.grp.visible) c.rig.rotation[c.spin[0]]=time*c.spin[1];
+      if(c.belt&&c.grp.visible) c.belt.offset.x=-time*.35;
+    });
+    CATS.forEach((c,i)=>c.btn.setAttribute('aria-current',i===active?'true':'false'));
+    rail.classList.toggle('on',k>1.4&&k<N-1.6);
+    introL.classList.toggle('on',k<.7&&p>0.001);
+    outroL.classList.toggle('on',k>N-1.5);
+
+    /* cards */
+    pick();
+    for(const m of cards){
+      const u=m.userData, A=2+2*u.si, B=A+1;
+      if(!CATS[u.si].grp.visible){ m.visible=false; continue; }
+      const st=(u.j/u.n)*.35;
+      const b=reduce? (k>A-.6&&k<B+.6?1:0) : ss(A-1.3,A-.2,k-st)*(1-ss(B+.15,B+.95,k+st));
+      const e=eo(b);
+      m.visible=e>.01; if(!m.visible) continue;
+      m.position.lerpVectors(u.sp,u.fp,e); m.quaternion.slerpQuaternions(u.sq,u.fq,e);
+      const hv=m===hovered?1.13:1; u.hs+=(hv-u.hs)*.2;
+      const s=(.4+.6*e)*u.hs; m.scale.set(u.w*s,u.h*s,1);
+      m.material.opacity=e; u.frame.material.opacity=(u.hs-1)/.13*e;
+    }
+    if(hovered&&pointer){
+      const v=hovered.userData.v;
+      tip.innerHTML=`<b></b><span>${t('tip',{kind:kindOf(v),views:fmtViews(v.views)})}</span>`; tip.querySelector('b').textContent=vTitle(v);
+      tip.style.left=pointer.x+'px'; tip.style.top=pointer.y+'px'; tip.classList.add('on'); stage.style.cursor='pointer';
+    }else{ tip.classList.remove('on'); stage.style.cursor=''; }
+    renderer.render(scene,camera);
+  };
+}
+
+/* ---------- boot ---------- */
+if(!glOK){
+  document.documentElement.classList.add('nogl');
+  buildLibrary(document.getElementById('journey')); libBuilt=false;
+}else{
+  await ready;
+  const loops=[];
+  try{ loops.push(initHero()); }catch(e){ console.error(e); }
+  try{ loops.push(initJourney()); }catch(e){ console.error(e); }
+  (function raf(){ loops.forEach(f=>f()); requestAnimationFrame(raf); })();
+}
+document.getElementById('startBtn').addEventListener('click',e=>{ e.preventDefault(); const s=document.getElementById('journey'); glideTo(s.offsetTop+innerHeight*.9); });
+</script>
+</body>
+</html>
