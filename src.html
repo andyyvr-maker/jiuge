@@ -469,10 +469,10 @@ const STR={
  home:'回主頁', homeAria:'回主頁（回到網站最上方）', gb:'訪客留言', gbSmall:'寫幾句話給九哥', close:'關閉',
  gbTitle:'留言給<br>九哥話室', gbLead:'不用註冊。想看哪個謎團被解開、對哪支影片有想法，或只是打聲招呼都可以。',
  name:'暱稱', message:'留言', send:'送出留言', wall:'大家的留言', ownerOn:'站長模式已開啟', ownerOff:'結束站長模式', loading:'正在讀取留言…',
- playerAria:'播放影片', watchYT:'在 YouTube 觀看', libAria:'全部影片列表', lclose:'關閉列表', libH2:'全部影片', libP:'{total} 支影片，依 6 個主題排列。點任一支直接播放。',
+ playerAria:'播放影片', watchYT:'在 YouTube 觀看', libAria:'全部影片列表', lclose:'關閉列表', libH2:'全部影片', libP:'{total} 支影片，依 {topics} 個主題排列。點任一支直接播放。',
  libCount:'（{n} 支）', video:'影片', shorts:'Shorts', untitled:'九哥話室影片', sep:'｜',
  views:'{n} 次觀看', views10k:'{n} 萬次觀看', tip:'{kind}，{views}，點擊播放',
- intro:'穿過銅鏡，6 個主題、{total} 支影片沿著同一條時間軸展開。',
+ intro:'穿過銅鏡，{topics} 個主題、{total} 支影片沿著同一條時間軸展開。',
  countBase:'{n} 支影片', countSome:'，其中 {sh} 支 Shorts', countAll:'，全是 Shorts', countTail:'。點卡片直接播放。',
  outroH2:'歷史的空白，一起算清楚。', outroP:'新影片每週更新在 YouTube。訂閱九哥話室，下一個被解碼的謎團不會錯過。',
  ownerTag:'站長', ownerAs:'以 <b>九哥話室 站長</b> 身分回覆 {name}', ownerReplyLabel:'站長回覆內容', ownerPh:'寫下給 {name} 的回覆…',
@@ -500,10 +500,10 @@ en:{
  home:'Home', homeAria:'Home (back to the top of the site)', gb:'Guestbook', gbSmall:'Say hi to Brother Nine', close:'Close',
  gbTitle:'Leave a message for<br>Brother Nine', gbLead:'No sign-up needed. Suggest a mystery to crack, share your thoughts on a video, or just say hi.',
  name:'Name', message:'Message', send:'Send message', wall:'Messages', ownerOn:'Owner mode is on', ownerOff:'Exit owner mode', loading:'Loading messages…',
- playerAria:'Play video', watchYT:'Watch on YouTube', libAria:'All videos', lclose:'Close list', libH2:'All videos', libP:'{total} videos in 6 topics. Click any of them to play.',
+ playerAria:'Play video', watchYT:'Watch on YouTube', libAria:'All videos', lclose:'Close list', libH2:'All videos', libP:'{total} videos in {topics} topics. Click any of them to play.',
  libCount:' ({n} videos)', video:'Video', shorts:'Short', untitled:'九哥話室 video', sep:' | ',
  views:'{n} views', views10k:'{n} views', tip:'{kind}, {views}. Click to play.',
- intro:'Through the bronze mirror: 6 topics and {total} videos along one timeline.',
+ intro:'Through the bronze mirror: {topics} topics and {total} videos along one timeline.',
  countBase:'{n} videos', countSome:', {sh} of them Shorts', countAll:', all Shorts', countTail:'. Click a card to play.',
  outroH2:'Let\'s work out history\'s gaps together.', outroP:'New videos land on YouTube every week. Subscribe to 九哥話室 so you don\'t miss the next mystery decoded.',
  ownerTag:'Owner', ownerAs:'Replying as <b>九哥話室 (owner)</b> to {name}', ownerReplyLabel:'Owner reply', ownerPh:'Write a reply to {name}…',
@@ -522,6 +522,7 @@ en:{
  'cat.qin.name':'The First Emperor', 'cat.qin.desc':'Rivers of mercury, underground altars, painted terracotta warriors. A tomb unopened for 2,200 years, examined with geomagnetic scans and engineering logic.',
  'cat.ancient.name':'Lost Civilizations', 'cat.ancient.desc':'Pyramids, the Maya calendar, Sumerian tablets, Göbekli Tepe. Where the textbooks fall short, the numbers get run again.',
  'cat.cosmos.name':'Cosmic Files', 'cat.cosmos.desc':'UFOs, the forbidden zone in Antarctica, the unexplained 4% of human DNA. Looking for alien traces in declassified files.',
+ 'cat.ai.name':'AI Tutorials', 'cat.ai.desc':'AI tools broken into steps: from prompts to hands-on builds, worked through one step at a time the engineer\'s way.',
  'cat.now.name':'News & Tech', 'cat.now.desc':'How Amazon, Apple and Alibaba became giants, how to get the most out of ChatGPT, and the week\'s world news.',
 }};
 const SRV_EN={'請填寫暱稱和留言。':'Enter your name and a message.','這個暱稱保留給站長使用，請換一個。':'That name is reserved for the channel owner. Please pick another.',
@@ -547,9 +548,9 @@ function t(key,vars){
 }
 function srvMsg(m){ if(!m) return m; if(LANG==='en') return SRV_EN[m]||(/金鑰/.test(m)?'Invalid owner key.':m); return zh(m); }
 function applyStatic(root=document){
-  const total=RAW.length;
-  root.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent=t(el.dataset.i18n,{total}); });
-  root.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML=t(el.dataset.i18nHtml,{total}); });
+  const total=RAW.length, topics=(typeof CATS!=='undefined'?CATS.length:'');
+  root.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent=t(el.dataset.i18n,{total,topics}); });
+  root.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML=t(el.dataset.i18nHtml,{total,topics}); });
   root.querySelectorAll('[data-i18n-aria]').forEach(el=>{ el.setAttribute('aria-label',t(el.dataset.i18nAria,{total})); });
   root.querySelectorAll('[data-i18n-alt]').forEach(el=>{ el.alt=t(el.dataset.i18nAlt,{total}); });
   document.title=t('title');
@@ -572,10 +573,12 @@ const CATS = [
   {key:'qin', name:'秦始皇陵', en:'The First Emperor', form:'army', desc:'水銀江河、地底祭壇、彩色兵馬俑。兩千兩百年沒人敢開的地宮，用地磁掃描和工程邏輯拆解。'},
   {key:'ancient', name:'失落古文明', en:'Lost Civilizations', form:'pyramid', desc:'金字塔、瑪雅曆法、蘇美爾泥板、哥貝克力石陣。教科書解釋不了的地方，重新計算一次。'},
   {key:'cosmos', name:'星際檔案', en:'Cosmic Files', form:'orbit', desc:'UFO、南極禁區、人類 DNA 裡那 4% 的空白。從解密檔案裡找外星文明的痕跡。'},
+  {key:'ai', name:'AI 教學', en:'AI Tutorials', form:'network', desc:'把 AI 工具拆成步驟教給你：從提示詞到實際動手做，用工程師的方法一步一步完成。'},
   {key:'now', name:'時事與科技', en:'News & Tech', form:'newswall', desc:'Amazon、Apple、阿里巴巴怎麼長成巨頭，ChatGPT 怎麼用最省時間，還有每週國際大事。'},
 ];
 function classify([id,t,s,v,p]){
   const has=(...a)=>a.some(i=>p.includes(i)), m=re=>re.test(t);
+  if(has(5)) return 'ai';
   if(has(4)||m(/秦始皇|兵馬俑/)) return 'qin';
   if(has(1)||m(/三星堆/)) return 'sxd';
   if(has(0)||m(/山海經|女媧|黃帝|炎帝|夸父|大禹|后羿|精衛|堯舜|商湯|易經|盤古|崑崙|神農|蚩尤|西王母/)) return 'shanhai';
@@ -586,6 +589,7 @@ function classify([id,t,s,v,p]){
 }
 const VIDEOS = RAW.map(r=>({id:r[0], title:(r[1]||'').replace(/[\s\-–—:：]+$/,''), short:!!r[2], views:r[3], cat:classify(r)}));
 CATS.forEach(c=>{ c.items=VIDEOS.filter(v=>v.cat===c.key); });
+for(let i=CATS.length-1;i>=0;i--) if(!CATS[i].items.length) CATS.splice(i,1);
 const fmtViews=v=>LANG==='en'?t('views',{n:new Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:1}).format(v)})
   :(v>=10000?t('views10k',{n:(v/10000).toFixed(1).replace(/\.0$/,'')}):t('views',{n:v.toLocaleString()}));
 const vTitle=v=>v.title?zh(v.title):t('untitled');
@@ -1023,6 +1027,17 @@ function rng(seed){ return ()=>{ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imu
 
 const FORMS={
 
+  network(it){ const n=it.length, L=Math.max(2,Math.min(4,Math.ceil(n/3))), base=Math.floor(n/L), extra=n%L;
+    const counts=[...Array(L)].map((_,l)=>base+(l<extra?1:0)), slots=[], layers=[]; let k=0;
+    counts.forEach((cnt,l)=>{ const col=[]; for(let j=0;j<cnt;j++){ const p=V3((l-(L-1)/2)*4.6,(j-(cnt-1)/2)*3.1,-Math.abs(l-(L-1)/2)*1.4);
+      slots.push({p,q:face(p,V3(p.x*.3,p.y*.3,30)),size:it[k].short?[1.5,2.66]:[2.6,1.46]}); col.push(p); k++; } layers.push(col); });
+    return {slots, pivot:V3(), a:[V3(0,.5,16),V3(0,0,-2)], b:[V3(-9,3,11),V3(0,0,-2)], depth:6,
+      deco(rig){ const m=new THREE.LineBasicMaterial({color:0x8CC9B8,transparent:true,opacity:.32}), pts=[];
+        for(let l=0;l<layers.length-1;l++) for(const a of layers[l]) for(const b of layers[l+1]) pts.push(V3(a.x,a.y,a.z-.05),V3(b.x,b.y,b.z-.05));
+        if(pts.length) rig.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),m));
+        const dm=new THREE.MeshBasicMaterial({color:0xD9AE52});
+        layers.flat().forEach(c=>{ const d=new THREE.Mesh(new THREE.SphereGeometry(.12,10,8),dm); d.position.set(c.x,c.y,c.z+.02); rig.add(d); }); } }; },
+
   army(it){ const cols=4, gx=2.7, gz=3.6, rows=Math.ceil(it.length/cols), D=rows*gz;
     return {slots:it.map((v,i)=>{ const c=i%cols, r=Math.floor(i/cols), p=V3((c-(cols-1)/2)*gx,1.8,-r*gz); return {p,q:face(p,V3(p.x*.5,9,p.z+16)), size:v.short?[1.5,2.66]:[2.5,1.4]}; }),
       pivot:V3(), a:[V3(0,8.5,12),V3(0,-2.5,-6)], b:[V3(0,6.5,-D+7),V3(0,-2.5,-D-6)], depth:D,
@@ -1138,7 +1153,7 @@ function initJourney(){
   const cards=[], keys=[], tgts=[];
   const intro=logoGroup(1); scene.add(intro);
   keys.push(V3(0,0,12),V3(0,0,-9)); tgts.push(V3(0,0,0),V3(0,0,-40));
-  let C=V3(0,0,-40); const lat=[-14,15,-13,14,-12,0];
+  let C=V3(0,0,-40); const lat=[-14,15,-13,14,-12,13,-14,15,0];
   CATS.forEach((c,si)=>{
     const F=FORMS[c.form](c.items);
     const grp=new THREE.Group(); grp.position.copy(C); scene.add(grp);
@@ -1192,7 +1207,7 @@ function initJourney(){
   });
   const outroL=mkLabel('outro','');
   function fillLabels(){
-    introL.innerHTML=`<p>${t('intro',{total:RAW.length})}</p>`;
+    introL.innerHTML=`<p>${t('intro',{total:RAW.length,topics:CATS.length})}</p>`;
     CATS.forEach(c=>{
       const n=c.items.length, sh=c.items.filter(v=>v.short).length;
       c.label.classList.toggle('vertical',!!c.vertical&&LANG!=='en'); c.label.classList.toggle('long',!!c.long&&LANG!=='en');
